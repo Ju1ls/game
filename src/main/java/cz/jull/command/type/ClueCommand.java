@@ -1,8 +1,10 @@
-package cz.jull.command;
+package cz.jull.command.type;
 
+import cz.jull.command.Command;
+import cz.jull.command.PostCommandActionType;
 import lombok.Getter;
 
-public class ClueCommand extends Command{
+public class ClueCommand extends Command {
     @Getter
     private final String name = "clue";
 

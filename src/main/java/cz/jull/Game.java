@@ -2,7 +2,7 @@ package cz.jull;
 
 public class Game {
 
-    public void start() {
+    public void startGame() {
 
     }
 }

@@ -1,0 +1,386 @@
+{
+  "locations": [
+    {
+      "id": "loc_abandoned_store",
+      "name": "Abandoned store",
+      "description": "TODO",
+      "locked": false,
+      "item_unlocked": [],
+      "sides": {
+        "north": {
+          "neighbors": [],
+          "npcs": [],
+          "items": [
+            {
+              "id": "item_emf_detector",
+              "name": "EMF detector",
+              "description": "TODO",
+              "hidden": false
+            }
+          ]
+        },
+        "south": {
+          "neighbors": ["loc_big_park"],
+          "npcs": [],
+          "items": [
+            {
+              "id": "item_knife",
+              "name": "Knife",
+              "description": "TODO",
+              "hidden": false
+            }
+          ]
+        },
+        "east": {
+          "neighbors": [],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": [],
+          "npcs": [],
+          "items": []
+        }
+      }
+    },
+    {
+      "id": "loc_big_park",
+      "name": "Big park",
+      "description": "TODO",
+      "locked": false,
+      "item_unlocked": [],
+      "sides": {
+        "north": {
+          "neighbors": ["loc_abandoned_store"],
+          "npcs": [],
+          "items": []
+        },
+        "south": {
+          "neighbors": ["loc_metro"],
+          "npcs": [],
+          "items": []
+        },
+        "east": {
+          "neighbors": ["loc_prefab_houses"],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": ["loc_train_station"],
+          "npcs": [],
+          "items": []
+        }
+      }
+    },
+    {
+      "id": "loc_train_station",
+      "name": "Train station",
+      "description": "TODO",
+      "locked": false,
+      "item_unlocked": [],
+      "sides": {
+        "north": {
+          "neighbors": [],
+          "npcs": [
+            {
+              "id": "npc_hostile_the_drifter",
+              "name": "The Drifter",
+              "health": 100,
+              "strength": 70,
+              "description": "TODO",
+              "items": [
+                {
+                  "id": "item_first_key",
+                  "name": "First key",
+                  "description": "TODO",
+                  "hidden": false
+                }
+              ]
+            }
+          ],
+          "items": []
+        },
+        "south": {
+          "neighbors": ["loc_botanical_garden"],
+          "npcs": [],
+          "items": [
+            {
+              "id": "item_batteries",
+              "name": "Batteries",
+              "description": "TODO",
+              "hidden": true
+            }
+          ]
+        },
+        "east": {
+          "neighbors": ["loc_big_park"],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": [],
+          "npcs": [],
+          "items": []
+        }
+      }
+    },
+    {
+      "id": "loc_botanical_garden",
+      "name": "Botanical garden",
+      "description": "TODO",
+      "locked": false,
+      "item_unlocked": [],
+      "sides": {
+        "north": {
+          "neighbors": ["loc_train_station"],
+          "npcs": [],
+          "items": []
+        },
+        "south": {
+          "neighbors": [],
+          "npcs": [
+            {
+              "id": "npc_friendly_eleanor_clarke",
+              "name": "Dr. Eleanor Clarke",
+              "description": "TODO",
+              "items": [
+                {
+                  "id": "item_second_key",
+                  "name": "Second key",
+                  "description": "TODO",
+                  "hidden": false
+                },
+                {
+                  "id": "item_medkit",
+                  "name": "Medkit",
+                  "description": "TODO",
+                  "hidden": false
+                }
+              ]
+            }
+          ],
+          "items": []
+        },
+        "east": {
+          "neighbors": ["loc_metro"],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": [],
+          "npcs": [],
+          "items": [
+            {
+              "id": "item_glass_shard",
+              "name": "Glass shard",
+              "description": "TODO",
+              "hidden": false
+            }
+          ]
+        }
+      }
+    },
+    {
+      "id": "loc_metro",
+      "name": "Metro",
+      "description": "TODO",
+      "locked": false,
+      "item_unlocked": [],
+      "sides": {
+        "north": {
+          "neighbors": ["loc_big_park"],
+          "npcs": [],
+          "items": []
+        },
+        "south": {
+          "neighbors": [],
+          "npcs": [
+            {
+              "id": "npc_friendly_arthur",
+              "name": "Arthur",
+              "description": "TODO",
+              "items": [
+                {
+                  "id": "item_drugs",
+                  "name": "Drugs",
+                  "description": "TODO",
+                  "hidden": false
+                },
+                {
+                  "id": "item_alcohol",
+                  "name": "Alcohol",
+                  "description": "TODO",
+                  "hidden": false
+                }
+              ]
+            }
+          ],
+          "items": []
+        },
+        "east": {
+          "neighbors": ["loc_tunnel"],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": ["loc_botanical_garden"],
+          "npcs": [],
+          "items": []
+        }
+      }
+    },
+    {
+      "id": "loc_tunnel",
+      "name": "Tunnel",
+      "description": "TODO",
+      "locked": false,
+      "item_unlocked": [],
+      "sides": {
+        "north": {
+          "neighbors": [],
+          "npcs": [],
+          "items": [
+            {
+              "id": "item_fourth_key",
+              "name": "Fourth key",
+              "description": "TODO",
+              "hidden": true
+            }
+          ]
+        },
+        "south": {
+          "neighbors": ["loc_bunker"],
+          "npcs": [],
+          "items": []
+        },
+        "east": {
+          "neighbors": ["loc_prefab_houses"],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": ["loc_metro"],
+          "npcs": [],
+          "items": []
+        }
+      }
+    },
+    {
+      "id": "loc_prefab_houses",
+      "name": "Prefab houses",
+      "description": "TODO",
+      "locked": false,
+      "item_unlocked": [],
+      "sides": {
+        "north": {
+          "neighbors": [],
+          "npcs": [
+            {
+              "id": "npc_hostile_the_blind_stalker",
+              "name": "The Blind Stalker",
+              "health": 100,
+              "strength": 90,
+              "description": "TODO",
+              "items": [
+                {
+                  "id": "item_third_key",
+                  "name": "Third key",
+                  "description": "TODO",
+                  "hidden": false
+                }
+              ]
+            }
+          ],
+          "items": []
+        },
+        "south": {
+          "neighbors": ["loc_tunnel"],
+          "npcs": [],
+          "items": []
+        },
+        "east": {
+          "neighbors": ["loc_power_station"],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": ["loc_big_park"],
+          "npcs": [],
+          "items": []
+        }
+      }
+    },
+    {
+      "id": "loc_power_station",
+      "name": "Power station",
+      "description": "TODO",
+      "locked": false,
+      "item_unlocked": [],
+      "sides": {
+        "north": {
+          "neighbors": ["loc_prefab_houses"],
+          "npcs": [],
+          "items": []
+        },
+        "south": {
+          "neighbors": [],
+          "npcs": [
+            {
+              "id": "npc_friendly_miller",
+              "name": "Miller",
+              "description": "TODO",
+              "items": [
+                {
+                  "id": "item_oxygen_mask",
+                  "name": "Oxygen mask",
+                  "description": "TODO",
+                  "hidden": false
+                }
+              ]
+            }
+          ],
+          "items": []
+        },
+        "east": {
+          "neighbors": [],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": [],
+          "npcs": [],
+          "items": []
+        }
+      }
+    },
+    {
+      "id": "loc_bunker",
+      "name": "Bunker",
+      "description": "TODO",
+      "locked": true,
+      "item_unlocked": ["item_first_key","item_second_key","item_third_key","item_fourth_key"],
+      "sides": {
+        "north": {
+          "neighbors": ["loc_tunnel"],
+          "npcs": [],
+          "items": []
+        },
+        "south": {
+          "neighbors": [],
+          "npcs": [],
+          "items": []
+        },
+        "east": {
+          "neighbors": [],
+          "npcs": [],
+          "items": []
+        },
+        "west": {
+          "neighbors": [],
+          "npcs": [],
+          "items": []
+        }
+      }
+    }
+  ]
+}

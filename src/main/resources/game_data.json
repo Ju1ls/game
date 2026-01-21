@@ -5,10 +5,10 @@
       "name": "Abandoned store",
       "description": "TODO",
       "locked": false,
-      "item_unlocked": [],
+      "items_unlocked": [],
       "sides": {
         "north": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": [
             {
@@ -20,7 +20,7 @@
           ]
         },
         "south": {
-          "neighbors": ["loc_big_park"],
+          "neighbor": "loc_big_park",
           "npcs": [],
           "items": [
             {
@@ -32,12 +32,12 @@
           ]
         },
         "east": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": []
         }
@@ -48,25 +48,25 @@
       "name": "Big park",
       "description": "TODO",
       "locked": false,
-      "item_unlocked": [],
+      "items_unlocked": [],
       "sides": {
         "north": {
-          "neighbors": ["loc_abandoned_store"],
+          "neighbor": "loc_abandoned_store",
           "npcs": [],
           "items": []
         },
         "south": {
-          "neighbors": ["loc_metro"],
+          "neighbor": "loc_metro",
           "npcs": [],
           "items": []
         },
         "east": {
-          "neighbors": ["loc_prefab_houses"],
+          "neighbor": "loc_prefab_houses",
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": ["loc_train_station"],
+          "neighbor": "loc_train_station",
           "npcs": [],
           "items": []
         }
@@ -77,10 +77,10 @@
       "name": "Train station",
       "description": "TODO",
       "locked": false,
-      "item_unlocked": [],
+      "items_unlocked": [],
       "sides": {
         "north": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [
             {
               "id": "npc_hostile_the_drifter",
@@ -101,7 +101,7 @@
           "items": []
         },
         "south": {
-          "neighbors": ["loc_botanical_garden"],
+          "neighbor": "loc_botanical_garden",
           "npcs": [],
           "items": [
             {
@@ -113,12 +113,12 @@
           ]
         },
         "east": {
-          "neighbors": ["loc_big_park"],
+          "neighbor": "loc_big_park",
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": []
         }
@@ -129,15 +129,15 @@
       "name": "Botanical garden",
       "description": "TODO",
       "locked": false,
-      "item_unlocked": [],
+      "items_unlocked": [],
       "sides": {
         "north": {
-          "neighbors": ["loc_train_station"],
+          "neighbor": "loc_train_station",
           "npcs": [],
           "items": []
         },
         "south": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [
             {
               "id": "npc_friendly_eleanor_clarke",
@@ -162,12 +162,12 @@
           "items": []
         },
         "east": {
-          "neighbors": ["loc_metro"],
+          "neighbor": "loc_metro",
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": [
             {
@@ -185,15 +185,15 @@
       "name": "Metro",
       "description": "TODO",
       "locked": false,
-      "item_unlocked": [],
+      "items_unlocked": [],
       "sides": {
         "north": {
-          "neighbors": ["loc_big_park"],
+          "neighbor": "loc_big_park",
           "npcs": [],
           "items": []
         },
         "south": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [
             {
               "id": "npc_friendly_arthur",
@@ -218,12 +218,12 @@
           "items": []
         },
         "east": {
-          "neighbors": ["loc_tunnel"],
+          "neighbor": "loc_tunnel",
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": ["loc_botanical_garden"],
+          "neighbor": "loc_botanical_garden",
           "npcs": [],
           "items": []
         }
@@ -234,10 +234,10 @@
       "name": "Tunnel",
       "description": "TODO",
       "locked": false,
-      "item_unlocked": [],
+      "items_unlocked": [],
       "sides": {
         "north": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": [
             {
@@ -249,17 +249,17 @@
           ]
         },
         "south": {
-          "neighbors": ["loc_bunker"],
+          "neighbor": "loc_bunker",
           "npcs": [],
           "items": []
         },
         "east": {
-          "neighbors": ["loc_prefab_houses"],
+          "neighbor": "loc_prefab_houses",
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": ["loc_metro"],
+          "neighbor": "loc_metro",
           "npcs": [],
           "items": []
         }
@@ -270,10 +270,10 @@
       "name": "Prefab houses",
       "description": "TODO",
       "locked": false,
-      "item_unlocked": [],
+      "items_unlocked": [],
       "sides": {
         "north": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [
             {
               "id": "npc_hostile_the_blind_stalker",
@@ -294,17 +294,17 @@
           "items": []
         },
         "south": {
-          "neighbors": ["loc_tunnel"],
+          "neighbor": "loc_tunnel",
           "npcs": [],
           "items": []
         },
         "east": {
-          "neighbors": ["loc_power_station"],
+          "neighbor": "loc_power_station",
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": ["loc_big_park"],
+          "neighbor": "loc_big_park",
           "npcs": [],
           "items": []
         }
@@ -315,15 +315,15 @@
       "name": "Power station",
       "description": "TODO",
       "locked": false,
-      "item_unlocked": [],
+      "items_unlocked": [],
       "sides": {
         "north": {
-          "neighbors": ["loc_prefab_houses"],
+          "neighbor": "loc_prefab_houses",
           "npcs": [],
           "items": []
         },
         "south": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [
             {
               "id": "npc_friendly_miller",
@@ -342,12 +342,12 @@
           "items": []
         },
         "east": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": []
         }
@@ -358,25 +358,25 @@
       "name": "Bunker",
       "description": "TODO",
       "locked": true,
-      "item_unlocked": ["item_first_key","item_second_key","item_third_key","item_fourth_key"],
+      "items_unlocked": ["item_first_key","item_second_key","item_third_key","item_fourth_key"],
       "sides": {
         "north": {
-          "neighbors": ["loc_tunnel"],
+          "neighbor": "loc_tunnel",
           "npcs": [],
           "items": []
         },
         "south": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": []
         },
         "east": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": []
         },
         "west": {
-          "neighbors": [],
+          "neighbor": null,
           "npcs": [],
           "items": []
         }

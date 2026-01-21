@@ -1,12 +1,16 @@
 package cz.jull.models.npc;
 
-public class FriendlyNPC extends NPC {
-    @Override
-    public void interact() {
+import cz.jull.models.Item;
 
+import java.util.List;
+
+public class FriendlyNPC extends NPC {
+    public FriendlyNPC(String id, String name, String description, List<Item> items) {
+        super(id, name, description, items);
     }
 
-    public void dialog() {
+    @Override
+    public void interact() {
 
     }
 }

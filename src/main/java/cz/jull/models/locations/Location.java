@@ -2,6 +2,7 @@ package cz.jull.models.locations;
 
 import cz.jull.models.Item;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import java.util.Map;
 
 @Getter
 @Setter
+@NoArgsConstructor
 public class Location {
     private String id;
     private String name;

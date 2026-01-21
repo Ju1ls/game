@@ -2,8 +2,8 @@ package cz.jull.models.locations;
 
 import cz.jull.models.Item;
 import cz.jull.models.npc.NPC;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
 import java.util.ArrayList;
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Getter
 @Setter
-
+@NoArgsConstructor
 public class Side {
     private String neighbor;
     private List<NPC> npcs;

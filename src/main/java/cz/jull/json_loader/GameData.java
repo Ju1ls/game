@@ -2,40 +2,22 @@ package cz.jull.json_loader;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import cz.jull.models.locations.Location;
+import cz.jull.models.locations.Side;
 import lombok.Getter;
 import lombok.Setter;
 
 import java.io.FileNotFoundException;
 import java.io.InputStream;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
-/**
- * Represents the root container for all static game data loaded from JSON.
- *  * <p>
- *  * This class acts as both a data wrapper (holding the list of {@link Location} objects)
- *  * and a utility provider for loading that data from the application resources.
- *  * </p>
- */
 @Getter
 @Setter
 public class GameData {
 
-    /**
-     * The list of all locations available in the game world.
-     * Mapped from the "locations" array in the JSON file.
-     */
     private List<Location> locations;
 
-    /**
-     * Loads the game data from the {@code /game_data.json} file located in the resource directory.
-     * <p>
-     * This method utilizes Jackson to deserialize the JSON content into a {@link GameData} instance.
-     * If the file is not found or parsing fails, the error is printed to {@code System.err},
-     * and this method returns {@code null}.
-     * </p>
-     *
-     * @return A populated {@link GameData} object if successful; {@code null} if loading fails.
-     */
     public static GameData loadGameDataFromResources() {
         ObjectMapper mapper = new ObjectMapper();
         GameData data = null;
@@ -47,11 +29,39 @@ public class GameData {
             }
 
             data = mapper.readValue(is, GameData.class);
+
+            if (data != null) {
+                data.resolveReferences();
+            }
         } catch (Exception e) {
             System.err.println("Failed to loadGameDataFromResources game data:");
             e.printStackTrace();
         }
         return data;
+    }
+
+    private void resolveReferences() {
+        if (locations == null) return;
+
+        Map<String, Location> locationMap = new HashMap<>();
+        for (Location location : locations) {
+            locationMap.put(location.getId(), location);
+        }
+
+        for (Location location : locations) {
+            if (location.getSides() != null) {
+                for (Side side : location.getSides().values()) {
+                    if (side.getNeighborId() != null) {
+                        Location targetLocation = locationMap.get(side.getNeighborId());
+                        if (targetLocation != null) {
+                            side.setNeighbor(targetLocation);
+                        } else {
+                            System.err.println("Warning: Invalid neighbor ID found: " + side.getNeighborId());
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 

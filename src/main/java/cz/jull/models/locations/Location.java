@@ -5,8 +5,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -20,15 +18,6 @@ public class Location {
     private boolean locked;
     private List<Item> items_unlocked;
     private Map<String, Side> sides;
-
-    public Location(String id, String name, String description, boolean locked, List<Item> items_unlocked, Map<String, Side> sides) {
-        this.id = id;
-        this.name = name;
-        this.description = description;
-        this.locked = locked;
-        this.items_unlocked = new ArrayList<>();
-        this.sides = new HashMap<>();
-    }
 
     @Override
     public String toString() {

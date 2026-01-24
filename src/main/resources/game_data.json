@@ -7,7 +7,7 @@
       "locked": false,
       "items_unlocked": [],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": null,
           "npcs": [],
           "items": [
@@ -19,7 +19,7 @@
             }
           ]
         },
-        "south": {
+        "SOUTH": {
           "neighbor": "loc_big_park",
           "npcs": [],
           "items": [
@@ -31,12 +31,12 @@
             }
           ]
         },
-        "east": {
+        "EAST": {
           "neighbor": null,
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": null,
           "npcs": [],
           "items": []
@@ -50,22 +50,22 @@
       "locked": false,
       "items_unlocked": [],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": "loc_abandoned_store",
           "npcs": [],
           "items": []
         },
-        "south": {
+        "SOUTH": {
           "neighbor": "loc_metro",
           "npcs": [],
           "items": []
         },
-        "east": {
+        "EAST": {
           "neighbor": "loc_prefab_houses",
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": "loc_train_station",
           "npcs": [],
           "items": []
@@ -79,7 +79,7 @@
       "locked": false,
       "items_unlocked": [],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": null,
           "npcs": [
             {
@@ -101,7 +101,7 @@
           ],
           "items": []
         },
-        "south": {
+        "SOUTH": {
           "neighbor": "loc_botanical_garden",
           "npcs": [],
           "items": [
@@ -113,12 +113,12 @@
             }
           ]
         },
-        "east": {
+        "EAST": {
           "neighbor": "loc_big_park",
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": null,
           "npcs": [],
           "items": []
@@ -132,12 +132,12 @@
       "locked": false,
       "items_unlocked": [],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": "loc_train_station",
           "npcs": [],
           "items": []
         },
-        "south": {
+        "SOUTH": {
           "neighbor": null,
           "npcs": [
             {
@@ -163,12 +163,12 @@
           ],
           "items": []
         },
-        "east": {
+        "EAST": {
           "neighbor": "loc_metro",
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": null,
           "npcs": [],
           "items": [
@@ -189,12 +189,12 @@
       "locked": false,
       "items_unlocked": [],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": "loc_big_park",
           "npcs": [],
           "items": []
         },
-        "south": {
+        "SOUTH": {
           "neighbor": null,
           "npcs": [
             {
@@ -220,12 +220,12 @@
           ],
           "items": []
         },
-        "east": {
+        "EAST": {
           "neighbor": "loc_tunnel",
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": "loc_botanical_garden",
           "npcs": [],
           "items": []
@@ -239,7 +239,7 @@
       "locked": false,
       "items_unlocked": [],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": null,
           "npcs": [],
           "items": [
@@ -251,17 +251,17 @@
             }
           ]
         },
-        "south": {
+        "SOUTH": {
           "neighbor": "loc_bunker",
           "npcs": [],
           "items": []
         },
-        "east": {
+        "EAST": {
           "neighbor": "loc_prefab_houses",
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": "loc_metro",
           "npcs": [],
           "items": []
@@ -275,7 +275,7 @@
       "locked": false,
       "items_unlocked": [],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": null,
           "npcs": [
             {
@@ -297,17 +297,17 @@
           ],
           "items": []
         },
-        "south": {
+        "SOUTH": {
           "neighbor": "loc_tunnel",
           "npcs": [],
           "items": []
         },
-        "east": {
+        "EAST": {
           "neighbor": "loc_power_station",
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": "loc_big_park",
           "npcs": [],
           "items": []
@@ -321,12 +321,12 @@
       "locked": false,
       "items_unlocked": [],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": "loc_prefab_houses",
           "npcs": [],
           "items": []
         },
-        "south": {
+        "SOUTH": {
           "neighbor": null,
           "npcs": [
             {
@@ -346,12 +346,12 @@
           ],
           "items": []
         },
-        "east": {
+        "EAST": {
           "neighbor": null,
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": null,
           "npcs": [],
           "items": []
@@ -365,22 +365,22 @@
       "locked": true,
       "items_unlocked": ["item_first_key","item_second_key","item_third_key","item_fourth_key"],
       "sides": {
-        "north": {
+        "NORTH": {
           "neighbor": "loc_tunnel",
           "npcs": [],
           "items": []
         },
-        "south": {
+        "SOUTH": {
           "neighbor": null,
           "npcs": [],
           "items": []
         },
-        "east": {
+        "EAST": {
           "neighbor": null,
           "npcs": [],
           "items": []
         },
-        "west": {
+        "WEST": {
           "neighbor": null,
           "npcs": [],
           "items": []

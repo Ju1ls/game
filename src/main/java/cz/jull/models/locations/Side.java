@@ -1,7 +1,5 @@
 package cz.jull.models.locations;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonProperty;
 import cz.jull.models.Item;
 import cz.jull.models.npc.NPC;
 import lombok.Getter;

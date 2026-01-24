@@ -7,8 +7,8 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
+import java.util.EnumMap;
 import java.util.List;
-import java.util.Map;
 
 @Getter
 @Setter
@@ -23,7 +23,7 @@ public class Location {
     private String description;
     private boolean locked;
     private List<Item> items_unlocked;
-    private Map<String, Side> sides;
+    private EnumMap<Direction, Side> sides;
 
     @Override
     public String toString() {

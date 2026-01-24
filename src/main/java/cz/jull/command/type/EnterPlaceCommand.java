@@ -4,6 +4,7 @@ import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.command.Command;
 import cz.jull.command.PostCommandActionType;
+import cz.jull.models.locations.Direction;
 import cz.jull.models.locations.Location;
 import cz.jull.models.locations.Side;
 import lombok.Getter;
@@ -26,17 +27,17 @@ public class EnterPlaceCommand extends Command {
         Side currentSide = player.getCurrentSide();
         Location currentLocation = player.getCurrentLocation();
         Location nextLocation = currentSide.getNeighbor();
-        String currentDirection = null;
+        Direction currentDirection = null;
 
-        if (nextLocation == null) { //no neighbor
+        if (nextLocation == null) { // no neighbor
             return PostCommandActionType.NONE;
         }
 
-        if (nextLocation.isLocked()) { //locked location
+        if (nextLocation.isLocked()) { // locked location
             return PostCommandActionType.NONE;
         }
 
-        for (Map.Entry<String, Side> entry : currentLocation.getSides().entrySet()) {
+        for (Map.Entry<Direction, Side> entry : currentLocation.getSides().entrySet()) {
             if (entry.getValue() == currentSide) {
                 currentDirection = entry.getKey();
                 break;
@@ -47,10 +48,10 @@ public class EnterPlaceCommand extends Command {
             return PostCommandActionType.NONE;
         }
 
-        String arrivalDirection = getOppositeDirection(currentDirection);
+        Direction arrivalDirection = currentDirection.getOpposite();
         Side arrivalSide = nextLocation.getSides().get(arrivalDirection);
 
-        if (arrivalSide == null) { //shouldn't happen, but I'd rather put it here
+        if (arrivalSide == null) { // shouldn't happen, but I'd rather put it here
             return PostCommandActionType.NONE;
         }
 
@@ -58,20 +59,5 @@ public class EnterPlaceCommand extends Command {
         player.setCurrentSide(arrivalSide);
 
         return PostCommandActionType.NONE;
-    }
-
-    /**
-     * Gets an opposite direction the player is facing.
-     * @param direction Current direction player is facing.
-     * @return Opposite direction of the neighbor.
-     */
-    private String getOppositeDirection(String direction) {
-        return switch (direction.toLowerCase()) {
-            case "north" -> "south";
-            case "south" -> "north";
-            case "east" -> "west";
-            case "west" -> "east";
-            default -> throw new IllegalStateException("Unexpected value: " + direction.toLowerCase());
-        };
     }
 }

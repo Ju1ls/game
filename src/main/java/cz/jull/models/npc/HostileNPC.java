@@ -1,7 +1,5 @@
 package cz.jull.models.npc;
 
-import com.fasterxml.jackson.databind.JsonDeserializer;
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import cz.jull.models.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -12,7 +10,6 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonDeserialize(using = JsonDeserializer.None.class)
 public class HostileNPC extends NPC {
     private int health;
     private int strength;

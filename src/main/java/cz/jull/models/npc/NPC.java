@@ -1,7 +1,7 @@
 package cz.jull.models.npc;
 
-import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
-import cz.jull.json_loader.NPCDeserializer;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import cz.jull.models.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -13,7 +13,14 @@ import java.util.List;
 @Getter
 @Setter
 @NoArgsConstructor
-@JsonDeserialize(using = NPCDeserializer.class)
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        property = "type"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = FriendlyNPC.class, name = "friendly"),
+        @JsonSubTypes.Type(value = HostileNPC.class, name = "hostile")
+})
 public abstract class NPC {
     private String id;
     private String name;

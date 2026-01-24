@@ -33,42 +33,11 @@ public class GameData {
             }
 
             data = mapper.readValue(is, GameData.class);
-
-            if (data != null) {
-                data.resolveReferences();
-            }
         } catch (Exception e) {
             System.err.println("Failed to loadGameDataFromResources game data:"); //TODO ill replace with exception
             e.printStackTrace();
         }
         return data;
-    }
-
-    /**
-     * Reconstructs the object graph by linking 'Side' objects to their target 'Location' objects.
-     */
-    private void resolveReferences() {
-        if (locations == null) return;
-
-        Map<String, Location> locationMap = new HashMap<>();
-        for (Location location : locations) {
-            locationMap.put(location.getId(), location);
-        }
-
-        for (Location location : locations) {
-            if (location.getSides() != null) {
-                for (Side side : location.getSides().values()) {
-                    if (side.getNeighborId() != null) {
-                        Location targetLocation = locationMap.get(side.getNeighborId());
-                        if (targetLocation != null) {
-                            side.setNeighbor(targetLocation);
-                        } else {
-                            System.err.println("Warning: Invalid neighbor ID found: " + side.getNeighborId()); //TODO ill replace with exception
-                        }
-                    }
-                }
-            }
-        }
     }
 }
 

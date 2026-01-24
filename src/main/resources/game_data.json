@@ -74,8 +74,8 @@
     },
     {
       "id": "loc_train_station",
-      "name": "Train station",
-      "description": "TODO",
+      "name": "TODO",
+      "description": "",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -84,6 +84,7 @@
           "npcs": [
             {
               "id": "npc_hostile_the_drifter",
+              "type": "hostile",
               "name": "The Drifter",
               "health": 100,
               "strength": 70,
@@ -141,6 +142,7 @@
           "npcs": [
             {
               "id": "npc_friendly_eleanor_clarke",
+              "type": "friendly",
               "name": "Dr. Eleanor Clarke",
               "description": "TODO",
               "items": [
@@ -197,6 +199,7 @@
           "npcs": [
             {
               "id": "npc_friendly_arthur",
+              "type": "friendly",
               "name": "Arthur",
               "description": "TODO",
               "items": [
@@ -277,6 +280,7 @@
           "npcs": [
             {
               "id": "npc_hostile_the_blind_stalker",
+              "type": "hostile",
               "name": "The Blind Stalker",
               "health": 100,
               "strength": 90,
@@ -327,6 +331,7 @@
           "npcs": [
             {
               "id": "npc_friendly_miller",
+              "type": "friendly",
               "name": "Miller",
               "description": "TODO",
               "items": [

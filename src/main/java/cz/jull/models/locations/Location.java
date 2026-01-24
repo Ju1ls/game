@@ -1,5 +1,7 @@
 package cz.jull.models.locations;
 
+import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import cz.jull.models.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -11,6 +13,10 @@ import java.util.Map;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Location {
     private String id;
     private String name;

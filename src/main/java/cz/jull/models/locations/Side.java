@@ -15,11 +15,7 @@ import java.util.List;
 @Setter
 @NoArgsConstructor
 public class Side {
-    @JsonIgnore
     private Location neighbor;
-
-    @JsonProperty("neighbor")
-    private String neighborId;
     private List<NPC> npcs;
     private List<Item> items;
 

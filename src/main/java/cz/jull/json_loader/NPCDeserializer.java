@@ -12,50 +12,23 @@ import cz.jull.models.npc.NPC;
 
 import java.io.IOException;
 
-/**
- * A custom Jackson deserializer for the {@link NPC} abstract class hierarchy.
- * <p>
- * This class handles polymorphic deserialization by inspecting the {@code "id"} field
- * in the JSON data. Instead of relying on specific fields or explicit type properties,
- * it deduces the subclass based on naming conventions found within the ID string
- * (e.g., checking for the substring "hostile").
- * </p>
- */
 public class NPCDeserializer extends StdDeserializer<NPC> {
 
-    /**
-     * Default constructor required by Jackson.
-     */
     public NPCDeserializer() {
         this(null);
     }
 
-    /**
-     * Constructor used by the framework with a specific class type.
-     *
-     * @param vc The value class.
-     */
     public NPCDeserializer(Class<?> vc) {
         super(vc);
     }
 
     /**
-     * Deserializes a JSON object into a specific subclass of {@link NPC}.
-     * <p>
-     * The logic follows these steps:
-     * <ol>
-     * <li>Reads the JSON content into a {@link JsonNode} tree.</li>
-     * <li>Extracts the {@code "id"} field.</li>
-     * <li>If the ID contains the substring {@code "hostile"}, maps to {@link HostileNPC}.</li>
-     * <li>If the ID contains {@code "friendly"} (or as a default fallback), maps to {@link FriendlyNPC}.</li>
-     * </ol>
-     * </p>
-     *
-     * @param jsonParser The JsonParser used to read JSON content.
+     * Custom deserialization logic to instantiate the correct NPC subclass based on the 'id' field.
+     * @param jsonParser The parser reading the JSON data.
      * @param context The deserialization context.
-     * @return An instance of {@link HostileNPC} or {@link FriendlyNPC}.
-     * @throws IOException             If a low-level I/O problem (unexpected end-of-input, network error) occurs.
-     * @throws JsonProcessingException If the JSON content is invalid or cannot be mapped to the target class.
+     * @return Instance of an NPC (either Hostile or Friendly).
+     * @throws IOException IOException If an I/O error occurs during reading.
+     * @throws JsonProcessingException JsonProcessingException If the JSON is invalid.
      */
     @Override
     public NPC deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException, JsonProcessingException {

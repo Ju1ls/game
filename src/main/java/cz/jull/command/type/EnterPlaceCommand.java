@@ -14,26 +14,29 @@ public class EnterPlaceCommand extends Command {
     @Getter
     private final String name = "enter";
 
-
+    /**
+     * Method that executes the movement logic to transfer the player to the neighboring location.
+     * @param args Arguments passed by the user (not used in this case).
+     * @param game The main game instance.
+     * @return PostCommandActionType.NONE.
+     */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
         Player player = game.getPlayer();
         Side currentSide = player.getCurrentSide();
-        Location currentLoc = player.getCurrentLocation();
+        Location currentLocation = player.getCurrentLocation();
         Location nextLocation = currentSide.getNeighbor();
         String currentDirection = null;
 
-        if (nextLocation == null) {
-            System.out.println("There is no way to go in this direction.");
+        if (nextLocation == null) { //no neighbor
             return PostCommandActionType.NONE;
         }
 
-        if (nextLocation.isLocked()) {
-            System.out.println("The " + nextLocation.getName() + " is currently locked.");
+        if (nextLocation.isLocked()) { //locked location
             return PostCommandActionType.NONE;
         }
 
-        for (Map.Entry<String, Side> entry : currentLoc.getSides().entrySet()) {
+        for (Map.Entry<String, Side> entry : currentLocation.getSides().entrySet()) {
             if (entry.getValue() == currentSide) {
                 currentDirection = entry.getKey();
                 break;
@@ -41,27 +44,27 @@ public class EnterPlaceCommand extends Command {
         }
 
         if (currentDirection == null) {
-            System.out.println("Error: Could not determine current direction.");
             return PostCommandActionType.NONE;
         }
 
         String arrivalDirection = getOppositeDirection(currentDirection);
         Side arrivalSide = nextLocation.getSides().get(arrivalDirection);
 
-        if (arrivalSide == null) {
-            System.out.println("Error: The path seems blocked on the other side.");
+        if (arrivalSide == null) { //shouldn't happen, but I'd rather put it here
             return PostCommandActionType.NONE;
         }
 
         player.setCurrentLocation(nextLocation);
         player.setCurrentSide(arrivalSide);
 
-        System.out.println("You have entered: " + nextLocation.getName());
-        System.out.println("You are now at the " + arrivalDirection + " side.");
-
         return PostCommandActionType.NONE;
     }
 
+    /**
+     * Gets an opposite direction the player is facing.
+     * @param direction Current direction player is facing.
+     * @return Opposite direction of the neighbor.
+     */
     private String getOppositeDirection(String direction) {
         return switch (direction.toLowerCase()) {
             case "north" -> "south";

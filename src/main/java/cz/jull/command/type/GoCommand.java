@@ -13,6 +13,12 @@ public class GoCommand extends Command {
     @Getter
     private final String name = "go";
 
+    /**
+     * Rotates the player to face a specific direction within the current location.
+     * @param args Arguments passed by the user (in this case directions like: "north", "south", "east" and "west").
+     * @param game The main game instance.
+     * @return PostCommandActionType.NONE.
+     */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
         String direction = args[0].toLowerCase();

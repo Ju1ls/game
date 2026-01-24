@@ -18,6 +18,10 @@ public class GameData {
 
     private List<Location> locations;
 
+    /**
+     * Loads and initializes the game world data from the classpath resource {@code /game_data.json}.
+     * @return The fully populated {@link GameData} instance, or {@code null} if loading fails.
+     */
     public static GameData loadGameDataFromResources() {
         ObjectMapper mapper = new ObjectMapper();
         GameData data = null;

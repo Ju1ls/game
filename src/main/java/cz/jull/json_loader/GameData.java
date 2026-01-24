@@ -38,12 +38,15 @@ public class GameData {
                 data.resolveReferences();
             }
         } catch (Exception e) {
-            System.err.println("Failed to loadGameDataFromResources game data:");
+            System.err.println("Failed to loadGameDataFromResources game data:"); //TODO ill replace with exception
             e.printStackTrace();
         }
         return data;
     }
 
+    /**
+     * Reconstructs the object graph by linking 'Side' objects to their target 'Location' objects.
+     */
     private void resolveReferences() {
         if (locations == null) return;
 
@@ -60,7 +63,7 @@ public class GameData {
                         if (targetLocation != null) {
                             side.setNeighbor(targetLocation);
                         } else {
-                            System.err.println("Warning: Invalid neighbor ID found: " + side.getNeighborId());
+                            System.err.println("Warning: Invalid neighbor ID found: " + side.getNeighborId()); //TODO ill replace with exception
                         }
                     }
                 }

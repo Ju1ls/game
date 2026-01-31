@@ -277,6 +277,11 @@
       "sides": {
         "NORTH": {
           "neighbor": null,
+          "npcs": [],
+          "items": []
+        },
+        "SOUTH": {
+          "neighbor": "loc_tunnel",
           "npcs": [
             {
               "id": "npc_hostile_the_blind_stalker",
@@ -295,11 +300,6 @@
               ]
             }
           ],
-          "items": []
-        },
-        "SOUTH": {
-          "neighbor": "loc_tunnel",
-          "npcs": [],
           "items": []
         },
         "EAST": {

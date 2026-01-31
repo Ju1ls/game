@@ -10,13 +10,12 @@ public class CommandManager {
     private final Set<Command> commands = new HashSet<>();
 
     public void runCommand(String fullString, Game game) {
-        String[] parts = fullString.split(" ");
-        String commandName = parts[0];
-
         for (Command command : commands) {
-            if (!command.getName().equals(commandName)) {
+            if (!fullString.startsWith(command.getName())) {
                 continue;
             }
+
+            String[] parts = fullString.replaceFirst(command.getName(), "").trim().split(" ");
 
             PostCommandActionType type = command.execute(parts, game);
             switch (type) {

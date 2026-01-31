@@ -10,7 +10,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 public class ScheduledTaskManager {
-    private final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
+    public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);
     private final List<Task> tasks = new ArrayList<>();
     private boolean started = false;
 

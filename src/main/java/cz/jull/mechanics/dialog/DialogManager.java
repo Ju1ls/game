@@ -66,7 +66,6 @@ public class DialogManager {
         } else {
             System.out.println("There is no question to answer here.");
 
-            // Auto-advance if it is a continuous dialog
             if (currentDialog.getOnEnd() instanceof DialogOnEnd.Continue cont) {
                 transitionTo(game, cont.nextDialog());
             }
@@ -81,13 +80,15 @@ public class DialogManager {
     private void transitionTo(Game game, Dialog next) {
         this.currentDialog = next;
 
+        printCurrentState();
+
         if (currentDialog.getOnStartAction() != null) {
             currentDialog.getOnStartAction().accept(game);
         }
 
-        printCurrentState();
-
-        if (currentDialog.getOnEnd() == null) {
+        if (currentDialog.getOnEnd() instanceof DialogOnEnd.Continue cont) {
+            transitionTo(game, cont.nextDialog());
+        } else if (currentDialog.getOnEnd() == null) {
             this.currentNpc = null;
             this.currentDialog = null;
         }
@@ -99,7 +100,7 @@ public class DialogManager {
      */
     private void printCurrentState() {
         System.out.println("------------------------------------------------");
-        System.out.println("[" + currentNpc.getName() + "]: " + currentDialog.getText());
+        System.out.println(currentNpc.getName() + ": " + currentDialog.getText());
 
         if (currentDialog.getOnEnd() instanceof DialogOnEnd.AskQuestion question) {
             for (int i = 0; i < question.getAnswers().length; i++) {

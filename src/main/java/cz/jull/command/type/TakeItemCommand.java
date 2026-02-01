@@ -25,6 +25,12 @@ public class TakeItemCommand extends Command {
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
         Player player = game.getPlayer();
+
+        if (player.getCurrentSide() == null) {
+            System.out.println("u arent looking at anything specific where items could be");
+            return PostCommandActionType.NONE;
+        }
+
         List<Item> itemsInLocation = player.getCurrentSide().getItems();
 
         if (args.length == 0) {

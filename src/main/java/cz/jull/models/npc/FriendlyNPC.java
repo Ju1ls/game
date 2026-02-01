@@ -5,7 +5,9 @@ import cz.jull.Player;
 import cz.jull.mechanics.dialog.Dialog;
 import cz.jull.mechanics.dialog.DialogOnEnd;
 import cz.jull.models.Item;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +17,10 @@ import java.util.Optional;
  * Represents a non-hostile entity within the game world.
  */
 @NoArgsConstructor
+@Getter
+@Setter
 public class FriendlyNPC extends NPC {
+
     public FriendlyNPC(String id, String name, String description, List<Item> items) {
         super(id, name, description, items);
     }
@@ -56,6 +61,7 @@ public class FriendlyNPC extends NPC {
         Dialog endSuccess = new Dialog(10, "Great. I needed these. Here, take this mask, I have no use for it anymore.", null, (g) -> {
             takeItemFromPlayer(g, "item_batteries");
             giveItemToPlayer(g, "item_oxygen_mask");
+            removeSelf(g);
         });
 
         Dialog endFail = new Dialog(10, "Damn it... I really need those batteries.", null, null);
@@ -80,6 +86,7 @@ public class FriendlyNPC extends NPC {
         return new Dialog(10, "Life is meaningless... take this, I won't need it anymore.", null, (g) -> {
             giveItemToPlayer(g, "item_alcohol");
             giveItemToPlayer(g, "item_drugs");
+            removeSelf(g);
         });
     }
 
@@ -90,19 +97,23 @@ public class FriendlyNPC extends NPC {
      */
     private Dialog createEleanorDialog(Game game) {
         if (playerHasItem(game.getPlayer(), "item_second_key")) {
-            return new Dialog(10, "Thank you for your help... please, go.", null, null);
+            return new Dialog(10, "Thank you for your help.", null);
         }
 
         boolean hasAlcohol = playerHasItem(game.getPlayer(), "item_alcohol");
         boolean hasDrugs = playerHasItem(game.getPlayer(), "item_drugs");
 
-        Dialog giveKeyOnly = new Dialog(10, "I... I can't hold on much longer. Take this key before I lose myself completely. Go!", null,
-                (g) -> giveItemToPlayer(g, "item_second_key"));
+        Dialog giveKeyOnly = new Dialog(10, "Take this key before I lose myself completely.", null,
+                (g) -> {
+                    giveItemToPlayer(g, "item_second_key");
+                    removeSelf(g);
+                }
+        );
 
         List<DialogOnEnd.AskQuestion.Answer> options = getAnswers(hasAlcohol, hasDrugs, giveKeyOnly);
 
-        return new Dialog(10, "My head... the voices... the pain. I need something to dull it. Alcohol... pills... anything.",
-                new DialogOnEnd.AskQuestion("Help her?", options.toArray(DialogOnEnd.AskQuestion.Answer[]::new)), null);
+        return new Dialog(10, "My head... I need something to dull the pain.",
+                new DialogOnEnd.AskQuestion("Help her?", options.toArray(DialogOnEnd.AskQuestion.Answer[]::new)));
     }
 
     /**
@@ -113,20 +124,23 @@ public class FriendlyNPC extends NPC {
      * @return A list of {@link DialogOnEnd.AskQuestion.Answer} available to the player.
      */
     private List<DialogOnEnd.AskQuestion.Answer> getAnswers(boolean hasAlcohol, boolean hasDrugs, Dialog giveKeyOnly) {
-        Dialog giveFullReward = new Dialog(10, "Thank you. The fog is clearing... take this key, and this medkit. You'll need them.", null, (g) -> {
+        Dialog giveFullReward = new Dialog(10, "Thank you. Take this key and medkit.", null, (g) -> {
             giveItemToPlayer(g, "item_second_key");
             giveItemToPlayer(g, "item_medkit");
+            removeSelf(g);
         });
 
         List<DialogOnEnd.AskQuestion.Answer> options = new ArrayList<>();
 
         if (hasAlcohol) {
             options.add(new DialogOnEnd.AskQuestion.Answer("Give Alcohol",
-                    new Dialog(10, "Needed that...", new DialogOnEnd.Continue(giveFullReward), (g) -> takeItemFromPlayer(g, "item_alcohol"))));
+                    new Dialog(10, "Needed that...", new DialogOnEnd.Continue(giveFullReward),
+                            (g) -> takeItemFromPlayer(g, "item_alcohol"))));
         }
         if (hasDrugs) {
             options.add(new DialogOnEnd.AskQuestion.Answer("Give Drugs",
-                    new Dialog(10, "That helps... the pain is fading.", new DialogOnEnd.Continue(giveFullReward), (g) -> takeItemFromPlayer(g, "item_drugs"))));
+                    new Dialog(10, "The pain is fading...", new DialogOnEnd.Continue(giveFullReward),
+                            (g) -> takeItemFromPlayer(g, "item_drugs"))));
         }
 
         options.add(new DialogOnEnd.AskQuestion.Answer("I have nothing", giveKeyOnly));
@@ -178,5 +192,13 @@ public class FriendlyNPC extends NPC {
             player.removeItemFromInventory(itemToRemove.get());
             System.out.println("u gave " + this.getName() + ": " + itemToRemove.get().getName());
         }
+    }
+
+    /**
+     * Removes this NPC from the current location (Side).
+     */
+    private void removeSelf(Game game) {
+        game.getPlayer().getCurrentSide().getNpcs().remove(this);
+        System.out.println(this.getName() + " has left the area.");
     }
 }

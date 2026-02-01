@@ -25,12 +25,16 @@ public class GoCommand extends Command {
      */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
-        Direction direction = Direction.fromString(args[0].toLowerCase());
-        Location currentLoc = game.getPlayer().getCurrentLocation();
+        if (args.length > 0) {
+            Direction direction = Direction.fromString(args[0].toLowerCase());
+            Location currentLoc = game.getPlayer().getCurrentLocation();
 
-        Side nextSide = currentLoc.getSides().get(direction);
-        game.getPlayer().setCurrentSide(nextSide);
-        System.out.println("u got to: " + nextSide);
+            Side nextSide = currentLoc.getSides().get(direction);
+            game.getPlayer().setCurrentSide(nextSide);
+            System.out.println("u got to: " + nextSide);
+        } else {
+            System.out.println("go where?");
+        }
         return PostCommandActionType.NONE;
     }
 }

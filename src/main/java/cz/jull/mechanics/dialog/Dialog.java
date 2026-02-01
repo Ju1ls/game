@@ -7,7 +7,6 @@ import lombok.RequiredArgsConstructor;
 
 import java.util.function.Consumer;
 
-@AllArgsConstructor
 @RequiredArgsConstructor
 @Getter
 public class Dialog {
@@ -16,4 +15,15 @@ public class Dialog {
     private final DialogOnEnd onEnd;
 
     private Consumer<Game> onStartAction;
+
+    public Dialog(int typingSpeed, String text, DialogOnEnd onEnd, Consumer<Game> onStartAction) {
+        this.typingSpeed = typingSpeed;
+        this.text = text;
+        this.onEnd = onEnd;
+        this.onStartAction = onStartAction;
+    }
+
+    public Dialog(int typingSpeed, String text, DialogOnEnd onEnd) {
+        this(typingSpeed, text, onEnd, null);
+    }
 }

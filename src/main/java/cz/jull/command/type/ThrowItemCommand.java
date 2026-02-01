@@ -7,12 +7,14 @@ import cz.jull.models.Item;
 import cz.jull.models.locations.Direction;
 import cz.jull.models.locations.Location;
 import cz.jull.models.locations.Side;
+import cz.jull.models.npc.HostileNPC;
 import cz.jull.models.npc.NPC;
 import lombok.Getter;
 
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
+import java.util.stream.Collectors;
 
 /**
  * Represents a command that allows the player to throw an item in a specific direction.
@@ -32,33 +34,76 @@ public class ThrowItemCommand extends Command {
      */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
-        Location currentLocation = game.getPlayer().getCurrentLocation();
-        EnumMap<Direction, Side> sides = currentLocation.getSides();
+        if (args.length < 2) {
+            System.out.println("type what to throw and where");
+            return PostCommandActionType.NONE;
+        }
 
-        String itemNameArg = args[0].toLowerCase();
-        Direction targetDirection = Direction.fromString(args[1]);
+        String directionStr = args[args.length - 1];
+        Direction targetDirection;
+        try {
+            targetDirection = Direction.fromString(directionStr);
+        } catch (IllegalArgumentException e) {
+            System.out.println(directionStr + " is not a valid direction");
+            return PostCommandActionType.NONE;
+        }
 
-        List<Item> tempLocation = new ArrayList<>();
+        StringBuilder itemNameBuilder = new StringBuilder();
+        for (int i = 0; i < args.length - 1; i++) {
+            itemNameBuilder.append(args[i]);
+            if (i < args.length - 2) itemNameBuilder.append(" ");
+        }
+        String itemNameArg = itemNameBuilder.toString().toLowerCase();
+
+        List<Item> itemsToThrow = new ArrayList<>();
         game.getPlayer().getInventory().stream()
                 .filter(item -> item.getName().equalsIgnoreCase(itemNameArg))
                 .findFirst()
                 .ifPresent(item -> {
                     game.getPlayer().removeItemFromInventory(item);
-                    tempLocation.add(item);
+                    itemsToThrow.add(item);
                 });
 
-        List<NPC> targetNpcs = sides.get(targetDirection).getNpcs();
-        List<Item> targetItems = sides.get(targetDirection).getItems();
+        if (itemsToThrow.isEmpty()) {
+            System.out.println("u don't have a " + itemNameArg + " to throw.");
+            return PostCommandActionType.NONE;
+        }
+
+        Location currentLocation = game.getPlayer().getCurrentLocation();
+        EnumMap<Direction, Side> sides = currentLocation.getSides();
+
+        Side targetSide = sides.get(targetDirection);
+        List<NPC> targetNpcs = targetSide.getNpcs();
+        List<Item> targetItems = targetSide.getItems();
+
+        boolean hostileMoved = false;
 
         for (Direction direction : Direction.values()) {
-            if (direction != targetDirection && sides.containsKey(direction)) {
-                Side side = sides.get(direction);
-                targetNpcs.addAll(side.getNpcs());
-                side.getNpcs().clear();
+            if (direction == targetDirection || !sides.containsKey(direction)) {
+                continue;
+            }
+
+            Side sourceSide = sides.get(direction);
+
+            List<NPC> hostiles = sourceSide.getNpcs().stream()
+                    .filter(npc -> npc instanceof HostileNPC)
+                    .collect(Collectors.toList());
+
+            if (!hostiles.isEmpty()) {
+                targetNpcs.addAll(hostiles);
+                sourceSide.getNpcs().removeAll(hostiles);
+                hostileMoved = true;
             }
         }
 
-        targetItems.addAll(tempLocation);
+        targetItems.addAll(itemsToThrow);
+
+        System.out.println("u threw the " + itemNameArg + " " + directionStr);
+        if (hostileMoved) {
+            System.out.println("monster moved ");
+        } else {
+            System.out.println("no monster noticed");
+        }
 
         return PostCommandActionType.NONE;
     }

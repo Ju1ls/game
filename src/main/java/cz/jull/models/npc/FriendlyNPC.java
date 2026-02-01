@@ -13,7 +13,6 @@ public class FriendlyNPC extends NPC {
 
     @Override
     public void interact() {
-
     }
 
     @Override

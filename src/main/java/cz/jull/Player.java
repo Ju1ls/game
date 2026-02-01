@@ -47,6 +47,21 @@ public class Player {
     @Getter
     private final List<Item> inventory = new ArrayList<>();
 
+    /**
+     * Calculates damage based on the equipped item.
+     */
+    public int getAttackDamage() {
+        if (equippedItem == null) {
+            return 5;
+        }
+
+        return switch (equippedItem.getId()) {
+            case "item_knife" -> 25;
+            case "item_glass_shard" -> 15;
+            default -> 5;
+        };
+    }
+
     public void addItemToInventory(Item item) {
         inventory.add(item);
     }
@@ -63,10 +78,7 @@ public class Player {
     }
 
     public void setHealth(int health) throws Exception {
-        if (health < 0) {
-            throw new Exception("health cant have negative value");
-        }
-        this.health = health;
+        this.health = Math.max(0, health);
     }
 
     public void setOxygen(int oxygen) throws Exception {

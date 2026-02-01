@@ -2,6 +2,7 @@ package cz.jull;
 
 import cz.jull.json_loader.GameData;
 import cz.jull.mechanics.DetectorBatteryManager;
+import cz.jull.mechanics.FightManager;
 import cz.jull.mechanics.MentalHealthManager;
 import cz.jull.mechanics.ScheduledTaskManager;
 import lombok.Getter;
@@ -17,6 +18,9 @@ public class Game {
 
     @Getter
     private final ScheduledTaskManager scheduledTaskManager = new ScheduledTaskManager();
+
+    @Getter
+    private final FightManager fightManager = new FightManager();
 
     public void startGame() throws IOException {
         loadGame();

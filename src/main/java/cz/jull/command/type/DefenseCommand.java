@@ -12,6 +12,6 @@ public class DefenseCommand extends Command {
 
     @Override
     public PostCommandActionType execute(String[] args,  Game game) {
-        return PostCommandActionType.NONE;
+        return game.getFightManager().performDefense(game);
     }
 }

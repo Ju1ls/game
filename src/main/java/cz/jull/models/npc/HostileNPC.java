@@ -22,7 +22,14 @@ public class HostileNPC extends NPC {
 
     @Override
     public void interact() {
+        switch (getId()) {
+            case "npc_hostile_the_drifter" -> {
 
+            }
+            case "npc_hostile_the_blind_stalker" -> {
+
+            }
+        }
     }
 
     @Override

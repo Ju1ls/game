@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import cz.jull.Game;
 import cz.jull.Player;
+import cz.jull.models.npc.NPC;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -42,7 +43,31 @@ public class Item {
         Player player = game.getPlayer();
         switch (id) {
             case "item_emf_detector" -> {
-                //TODO
+                if (player.getDetectorBatteryLevel() <= 0) {
+                    return;
+                }
+
+                boolean newFreq = !player.isEmfHighFrequency();
+                player.setEmfHighFrequency(newFreq);
+                player.setDetectorBatteryLevel(player.getDetectorBatteryLevel() - 2);
+
+                boolean monsterDetected = false;
+                if (player.getCurrentLocation().getSides() != null) {
+                    monsterDetected = player.getCurrentLocation().getSides().values().stream()
+                            .filter(side -> side.getNpcs() != null)
+                            .flatMap(side -> side.getNpcs().stream())
+                            .anyMatch(NPC::isDetectableByEmf);
+                }
+
+                String mode = newFreq ? "HIGH FREQUENCY" : "LOW FREQUENCY";
+                System.out.println("detector switched to " + mode + " band");
+
+                if (monsterDetected) {
+                    if (newFreq) {
+                    } else {
+                    }
+                } else {
+                }
             }
             case "item_oxygen_mask" -> {
                 usable = false;

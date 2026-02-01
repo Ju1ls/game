@@ -24,4 +24,9 @@ public class HostileNPC extends NPC {
     public void interact() {
 
     }
+
+    @Override
+    public boolean isDetectableByEmf() {
+        return true;
+    }
 }

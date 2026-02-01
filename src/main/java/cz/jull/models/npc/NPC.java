@@ -36,6 +36,8 @@ public abstract class NPC {
 
     public abstract void interact();
 
+    public abstract boolean isDetectableByEmf();
+
     @Override
     public String toString() {
         return "NPC{" +

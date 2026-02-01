@@ -26,23 +26,37 @@ public class TakeItemCommand extends Command {
     public PostCommandActionType execute(String[] args, Game game) {
         Player player = game.getPlayer();
         List<Item> itemsInLocation = player.getCurrentSide().getItems();
+
+        if (args.length == 0) {
+            System.out.println("what do u want to take");
+            return PostCommandActionType.NONE;
+        }
+
         String itemNameArg = args[0].toLowerCase();
+        Item itemToTake = null;
 
         for (Item item : itemsInLocation) {
             if (item.isHidden()) {
                 continue;
             }
-            String itemName = item.getName().toLowerCase();
-            if (!itemName.equals(itemNameArg)) {
-                continue;
+
+            if (item.getName().toLowerCase().equals(itemNameArg)) {
+                itemToTake = item;
+                break;
             }
-            if (player.getInventory().size() > 6) {
-                System.out.println("cant have more than 6 things");
-            }
-            player.addItemToInventory(item);
-            itemsInLocation.remove(item);
-            break;
         }
+
+        if (itemToTake == null) {
+            System.out.println("item not found");
+            return PostCommandActionType.NONE;
+        }
+        if (player.getInventory().size() >= 6) {
+            System.out.println("cant have more than 6 things");
+            return PostCommandActionType.NONE;
+        }
+
+        player.addItemToInventory(itemToTake);
+        itemsInLocation.remove(itemToTake);
 
         return PostCommandActionType.NONE;
     }

@@ -34,6 +34,10 @@ public class Player {
 
     @Setter
     @Getter
+    private boolean emfHighFrequency = false;
+
+    @Setter
+    @Getter
     private boolean hasOxygenMask = false;
 
     @Setter
@@ -83,10 +87,7 @@ public class Player {
         this.mentalHealth = mentalHealth;
     }
 
-    public void setDetectorBatteryLevel(int detectorBatteryLevel) throws Exception {
-        if (detectorBatteryLevel < 0) {
-            throw new Exception("battery level cant have negative value");
-        }
-        this.detectorBatteryLevel = detectorBatteryLevel;
+    public void setDetectorBatteryLevel(int detectorBatteryLevel) {
+        this.detectorBatteryLevel = Math.max(0, detectorBatteryLevel);
     }
 }

@@ -15,4 +15,9 @@ public class FriendlyNPC extends NPC {
     public void interact() {
 
     }
+
+    @Override
+    public boolean isDetectableByEmf() {
+        return false;
+    }
 }

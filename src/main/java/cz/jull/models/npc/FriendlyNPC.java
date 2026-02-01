@@ -89,6 +89,10 @@ public class FriendlyNPC extends NPC {
      * @return A {@link Dialog} object representing Eleanor's plea for help.
      */
     private Dialog createEleanorDialog(Game game) {
+        if (playerHasItem(game.getPlayer(), "item_second_key")) {
+            return new Dialog(10, "Thank you for your help... please, go.", null, null);
+        }
+
         boolean hasAlcohol = playerHasItem(game.getPlayer(), "item_alcohol");
         boolean hasDrugs = playerHasItem(game.getPlayer(), "item_drugs");
 
@@ -97,7 +101,6 @@ public class FriendlyNPC extends NPC {
 
         List<DialogOnEnd.AskQuestion.Answer> options = getAnswers(hasAlcohol, hasDrugs, giveKeyOnly);
 
-        // Root Question
         return new Dialog(10, "My head... the voices... the pain. I need something to dull it. Alcohol... pills... anything.",
                 new DialogOnEnd.AskQuestion("Help her?", options.toArray(DialogOnEnd.AskQuestion.Answer[]::new)), null);
     }

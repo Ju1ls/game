@@ -5,9 +5,13 @@ import cz.jull.command.Command;
 import cz.jull.command.PostCommandActionType;
 import cz.jull.models.Item;
 import cz.jull.models.locations.Direction;
+import cz.jull.models.locations.Location;
+import cz.jull.models.locations.Side;
 import cz.jull.models.npc.NPC;
 import lombok.Getter;
 
+import java.util.ArrayList;
+import java.util.EnumMap;
 import java.util.List;
 
 /**
@@ -22,65 +26,40 @@ public class ThrowItemCommand extends Command {
      * @param args Arguments passed by the user.
      *      * <ul>
      *      * <li>{@code args[0]}: The name of the item to throw.</li>
-     *      * <li>{@code args[1]}: The direction to throw (NORTH, SOUTH, EAST, WEST).</li>
+     *      * <li>{@code args[1]}: The direction to throw (north, south, east, west).</li>
      * @param game The main game instance.
      * @return {@link PostCommandActionType#NONE}.
      */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
-        List<Item> inventory = game.getPlayer().getInventory();
+        Location currentLocation = game.getPlayer().getCurrentLocation();
+        EnumMap<Direction, Side> sides = currentLocation.getSides();
+
         String itemNameArg = args[0].toLowerCase();
+        Direction targetDirection = Direction.fromString(args[1]);
 
-        for (Item item : inventory) {
-            String itemName = item.getName().toLowerCase();
-            if (!itemName.equals(itemNameArg)) {
-                continue;
+        List<Item> tempLocation = new ArrayList<>();
+        game.getPlayer().getInventory().stream()
+                .filter(item -> item.getName().equalsIgnoreCase(itemNameArg))
+                .findFirst()
+                .ifPresent(item -> {
+                    game.getPlayer().removeItemFromInventory(item);
+                    tempLocation.add(item);
+                });
+
+        List<NPC> targetNpcs = sides.get(targetDirection).getNpcs();
+        List<Item> targetItems = sides.get(targetDirection).getItems();
+
+        for (Direction direction : Direction.values()) {
+            if (direction != targetDirection && sides.containsKey(direction)) {
+                Side side = sides.get(direction);
+                targetNpcs.addAll(side.getNpcs());
+                side.getNpcs().clear();
             }
-            game.getPlayer().removeItemFromInventory(item);
-            break;
         }
 
-        List<NPC> north = game.getPlayer().getCurrentLocation().getSides().get(Direction.NORTH).getNpcs();
-        List<NPC> south = game.getPlayer().getCurrentLocation().getSides().get(Direction.SOUTH).getNpcs();
-        List<NPC> east = game.getPlayer().getCurrentLocation().getSides().get(Direction.EAST).getNpcs();
-        List<NPC> west = game.getPlayer().getCurrentLocation().getSides().get(Direction.WEST).getNpcs();
+        targetItems.addAll(tempLocation);
 
-        Direction side = Direction.fromString(args[1]);
-
-        switch (side) {
-            case NORTH -> {
-                north.addAll(south);
-                north.addAll(east);
-                north.addAll(west);
-                south.clear();
-                east.clear();
-                west.clear();
-            }
-            case SOUTH -> {
-                south.addAll(north);
-                south.addAll(east);
-                south.addAll(west);
-                north.clear();
-                east.clear();
-                west.clear();
-            }
-            case EAST -> {
-                east.addAll(north);
-                east.addAll(south);
-                east.addAll(west);
-                north.clear();
-                south.clear();
-                west.clear();
-            }
-            case WEST -> {
-                west.addAll(north);
-                west.addAll(south);
-                west.addAll(east);
-                north.clear();
-                south.clear();
-                east.clear();
-            }
-        }
         return PostCommandActionType.NONE;
     }
 }

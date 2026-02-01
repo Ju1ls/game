@@ -64,9 +64,12 @@ public class Item {
 
                 if (monsterDetected) {
                     if (newFreq) {
+                        System.out.println("detector is beeping fast");
                     } else {
+                        System.out.println("detector is beeping slowly");
                     }
                 } else {
+                    System.out.println("all good");
                 }
             }
             case "item_oxygen_mask" -> {

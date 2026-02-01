@@ -13,7 +13,7 @@
           "items": [
             {
               "id": "item_emf_detector",
-              "name": "EMF detector",
+              "name": "detector",
               "description": "TODO",
               "hidden": false
             }
@@ -74,8 +74,8 @@
     },
     {
       "id": "loc_train_station",
-      "name": "TODO",
-      "description": "",
+      "name": "Train station",
+      "description": "TODO",
       "locked": false,
       "items_unlocked": [],
       "sides": {

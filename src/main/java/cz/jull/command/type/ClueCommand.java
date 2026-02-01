@@ -11,6 +11,7 @@ public class ClueCommand extends Command {
 
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
+        System.out.println("Find all 4 keys, make it to hidden Bunker and dont die :)");
         return PostCommandActionType.NONE;
     }
 }

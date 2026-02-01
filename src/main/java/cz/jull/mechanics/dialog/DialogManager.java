@@ -56,8 +56,8 @@ public class DialogManager {
         if (currentDialog.getOnEnd() instanceof DialogOnEnd.AskQuestion question) {
             int arrayIndex = index - 1;
 
-            if (arrayIndex >= 0 && arrayIndex < question.getAnswers().length) {
-                DialogOnEnd.AskQuestion.Answer selected = question.getAnswers()[arrayIndex];
+            if (arrayIndex >= 0 && arrayIndex < question.answers().length) {
+                DialogOnEnd.AskQuestion.Answer selected = question.answers()[arrayIndex];
                 System.out.println("> " + selected.answer());
                 transitionTo(game, selected.dialog());
             } else {
@@ -103,8 +103,8 @@ public class DialogManager {
         System.out.println(currentNpc.getName() + ": " + currentDialog.getText());
 
         if (currentDialog.getOnEnd() instanceof DialogOnEnd.AskQuestion question) {
-            for (int i = 0; i < question.getAnswers().length; i++) {
-                System.out.println((i + 1) + ". " + question.getAnswers()[i].answer());
+            for (int i = 0; i < question.answers().length; i++) {
+                System.out.println((i + 1) + ". " + question.answers()[i].answer());
             }
         }
         System.out.println("------------------------------------------------");

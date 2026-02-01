@@ -87,7 +87,7 @@
               "type": "hostile",
               "name": "The Drifter",
               "health": 100,
-              "strength": 70,
+              "strength": 15,
               "description": "TODO",
               "items": [
                 {
@@ -288,7 +288,7 @@
               "type": "hostile",
               "name": "The Blind Stalker",
               "health": 100,
-              "strength": 90,
+              "strength": 25,
               "description": "TODO",
               "items": [
                 {

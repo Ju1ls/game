@@ -62,10 +62,18 @@ public class Player {
         };
     }
 
+    /**
+     * Adds item to the players inventory.
+     * @param item The item being added.
+     */
     public void addItemToInventory(Item item) {
         inventory.add(item);
     }
 
+    /**
+     * Removes item from players inventory.
+     * @param item The item being removed.
+     */
     public void removeItemFromInventory(Item item) {
         inventory.remove(item);
     }

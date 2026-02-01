@@ -36,14 +36,14 @@ public class FriendlyNPC extends NPC {
             case "npc_friendly_miller" -> createMillerDialog(game);
             case "npc_friendly_arthur" -> createArthurDialog(game);
             case "npc_friendly_eleanor_clarke" -> createEleanorDialog(game);
-            default -> new Dialog(10, "...", null, null);
+            default -> new Dialog("...", null, null);
         };
         game.getDialogManager().startDialog(game, this, root);
     }
 
     /**
      * Determines if this NPC is detectable by the EMF reader.
-     * * @return Always false for FriendlyNPCs as they are living/physical entities.
+     * @return Always false for FriendlyNPCs as they are living/physical entities.
      */
     @Override
     public boolean isDetectableByEmf() {
@@ -58,13 +58,13 @@ public class FriendlyNPC extends NPC {
     private Dialog createMillerDialog(Game game) {
         boolean hasBatteries = playerHasItem(game.getPlayer(), "item_batteries");
 
-        Dialog endSuccess = new Dialog(10, "Great. I needed these. Here, take this mask, I have no use for it anymore.", null, (g) -> {
+        Dialog endSuccess = new Dialog("Great. I needed these. Here, take this mask, I have no use for it anymore.", null, (g) -> {
             takeItemFromPlayer(g, "item_batteries");
             giveItemToPlayer(g, "item_oxygen_mask");
             removeSelf(g);
         });
 
-        Dialog endFail = new Dialog(10, "Damn it... I really need those batteries.", null, null);
+        Dialog endFail = new Dialog("Damn it... I really need those batteries.", null, null);
 
         List<DialogOnEnd.AskQuestion.Answer> options = new ArrayList<>();
 
@@ -73,7 +73,7 @@ public class FriendlyNPC extends NPC {
         }
         options.add(new DialogOnEnd.AskQuestion.Answer("I don't have them / No", endFail));
 
-        return new Dialog(10, "Hey you... you look like a scavenger. I need batteries. Do you have any?",
+        return new Dialog("Hey you... you look like a scavenger. I need batteries. Do you have any?",
                 new DialogOnEnd.AskQuestion("Do you have batteries?", options.toArray(DialogOnEnd.AskQuestion.Answer[]::new)), null);
     }
 
@@ -83,7 +83,7 @@ public class FriendlyNPC extends NPC {
      * @return A {@link Dialog} object where Arthur gifts items to the player.
      */
     private Dialog createArthurDialog(Game game) {
-        return new Dialog(10, "Life is meaningless... take this, I won't need it anymore.", null, (g) -> {
+        return new Dialog("Life is meaningless... take this, I won't need it anymore.", null, (g) -> {
             giveItemToPlayer(g, "item_alcohol");
             giveItemToPlayer(g, "item_drugs");
             removeSelf(g);
@@ -97,13 +97,13 @@ public class FriendlyNPC extends NPC {
      */
     private Dialog createEleanorDialog(Game game) {
         if (playerHasItem(game.getPlayer(), "item_second_key")) {
-            return new Dialog(10, "Thank you for your help.", null);
+            return new Dialog("Thank you for your help.", null);
         }
 
         boolean hasAlcohol = playerHasItem(game.getPlayer(), "item_alcohol");
         boolean hasDrugs = playerHasItem(game.getPlayer(), "item_drugs");
 
-        Dialog giveKeyOnly = new Dialog(10, "Take this key before I lose myself completely.", null,
+        Dialog giveKeyOnly = new Dialog("Take this key before I lose myself completely.", null,
                 (g) -> {
                     giveItemToPlayer(g, "item_second_key");
                     removeSelf(g);
@@ -112,7 +112,7 @@ public class FriendlyNPC extends NPC {
 
         List<DialogOnEnd.AskQuestion.Answer> options = getAnswers(hasAlcohol, hasDrugs, giveKeyOnly);
 
-        return new Dialog(10, "My head... I need something to dull the pain.",
+        return new Dialog("My head... I need something to dull the pain.",
                 new DialogOnEnd.AskQuestion("Help her?", options.toArray(DialogOnEnd.AskQuestion.Answer[]::new)));
     }
 
@@ -124,7 +124,7 @@ public class FriendlyNPC extends NPC {
      * @return A list of {@link DialogOnEnd.AskQuestion.Answer} available to the player.
      */
     private List<DialogOnEnd.AskQuestion.Answer> getAnswers(boolean hasAlcohol, boolean hasDrugs, Dialog giveKeyOnly) {
-        Dialog giveFullReward = new Dialog(10, "Thank you. Take this key and medkit.", null, (g) -> {
+        Dialog giveFullReward = new Dialog("Thank you. Take this key and medkit.", null, (g) -> {
             giveItemToPlayer(g, "item_second_key");
             giveItemToPlayer(g, "item_medkit");
             removeSelf(g);
@@ -134,12 +134,12 @@ public class FriendlyNPC extends NPC {
 
         if (hasAlcohol) {
             options.add(new DialogOnEnd.AskQuestion.Answer("Give Alcohol",
-                    new Dialog(10, "Needed that...", new DialogOnEnd.Continue(giveFullReward),
+                    new Dialog("Needed that...", new DialogOnEnd.Continue(giveFullReward),
                             (g) -> takeItemFromPlayer(g, "item_alcohol"))));
         }
         if (hasDrugs) {
             options.add(new DialogOnEnd.AskQuestion.Answer("Give Drugs",
-                    new Dialog(10, "The pain is fading...", new DialogOnEnd.Continue(giveFullReward),
+                    new Dialog("The pain is fading...", new DialogOnEnd.Continue(giveFullReward),
                             (g) -> takeItemFromPlayer(g, "item_drugs"))));
         }
 

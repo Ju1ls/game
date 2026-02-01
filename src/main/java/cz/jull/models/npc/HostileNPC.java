@@ -8,6 +8,9 @@ import lombok.Setter;
 
 import java.util.List;
 
+/**
+ * Represents a hostile entity within the game world.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

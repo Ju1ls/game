@@ -21,7 +21,7 @@ public class AnswerCommand extends Command {
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
         if (args.length == 0) {
-            System.out.println("specify the option number.");
+            System.out.println("specify the option number");
             return PostCommandActionType.NONE;
         }
 

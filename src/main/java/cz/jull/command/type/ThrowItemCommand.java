@@ -14,7 +14,6 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.EnumMap;
 import java.util.List;
-import java.util.stream.Collectors;
 
 /**
  * Represents a command that allows the player to throw an item in a specific direction.
@@ -87,7 +86,7 @@ public class ThrowItemCommand extends Command {
 
             List<NPC> hostiles = sourceSide.getNpcs().stream()
                     .filter(npc -> npc instanceof HostileNPC)
-                    .collect(Collectors.toList());
+                    .toList();
 
             if (!hostiles.isEmpty()) {
                 targetNpcs.addAll(hostiles);

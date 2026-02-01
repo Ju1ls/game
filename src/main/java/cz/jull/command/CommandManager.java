@@ -37,6 +37,7 @@ public class CommandManager {
                     System.exit(0);
                 }
                 case EXIT -> {
+                    System.out.println("Exiting...");
                     System.exit(0);
                 }
             }

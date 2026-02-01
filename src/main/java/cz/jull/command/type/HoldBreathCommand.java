@@ -17,7 +17,7 @@ public class HoldBreathCommand extends Command {
      * Executes the breath-holding logic based on the player's current state.
      * @param args Arguments passed by the user (not used in this case).
      * @param game The main game instance.
-     * @return PostCommandActionType.NONE.
+     * @return {@link PostCommandActionType#NONE}.
      */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {

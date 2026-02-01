@@ -20,7 +20,7 @@ public class SearchCommand extends Command {
      * Executes the search logic in the player's current location.
      * @param args Arguments passed by the user (not used in this case).
      * @param game The main game instance.
-     * @return PostCommandActionType.NONE.
+     * @return {@link PostCommandActionType#NONE}.
      */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {

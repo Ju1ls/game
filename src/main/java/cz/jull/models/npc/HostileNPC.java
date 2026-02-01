@@ -1,5 +1,6 @@
 package cz.jull.models.npc;
 
+import cz.jull.Game;
 import cz.jull.models.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -21,17 +22,13 @@ public class HostileNPC extends NPC {
     }
 
     @Override
-    public void interact() {
-        switch (getId()) {
-            case "npc_hostile_the_drifter" -> {
-
-            }
-            case "npc_hostile_the_blind_stalker" -> {
-
-            }
-        }
+    public void interact(Game game) {
     }
 
+    /**
+     * Determines if this NPC is detectable by the EMF reader.
+     * * @return Always true for HostileNPCs.
+     */
     @Override
     public boolean isDetectableByEmf() {
         return true;

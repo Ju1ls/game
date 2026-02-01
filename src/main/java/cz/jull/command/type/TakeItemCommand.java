@@ -20,7 +20,7 @@ public class TakeItemCommand extends Command {
      * Executes the logic to transfer an item from the location to the player.
      * @param args Arguments passed by the user. {@code args[0]} represents the target item name.
      * @param game The main game instance.
-     * @return PostCommandActionType.NONE.
+     * @return {@link PostCommandActionType#NONE}.
      */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {

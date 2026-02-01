@@ -2,6 +2,7 @@ package cz.jull.models.npc;
 
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import cz.jull.Game;
 import cz.jull.models.Item;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -34,7 +35,7 @@ public abstract class NPC {
         this.items = new ArrayList<>();
     }
 
-    public abstract void interact();
+    public abstract void interact(Game game);
 
     public abstract boolean isDetectableByEmf();
 

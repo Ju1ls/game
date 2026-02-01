@@ -10,7 +10,7 @@ public abstract class Command {
 
     /**
      * Executes the specific logic of the command.
-     * @param args Arguments passed by the user
+     * @param args Arguments passed by the user.
      * @param game The main game instance.
      * @return PostCommandActionType.NONE.
      */

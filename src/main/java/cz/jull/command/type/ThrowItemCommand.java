@@ -24,7 +24,7 @@ public class ThrowItemCommand extends Command {
      *      * <li>{@code args[0]}: The name of the item to throw.</li>
      *      * <li>{@code args[1]}: The direction to throw (NORTH, SOUTH, EAST, WEST).</li>
      * @param game The main game instance.
-     * @return PostCommandActionType.NONE.
+     * @return {@link PostCommandActionType#NONE}.
      */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {

@@ -10,15 +10,26 @@ import lombok.Getter;
 
 import java.util.Optional;
 
+/**
+ * Manages the combat encounters between the {@link Player} and {@link HostileNPC}s.
+ */
 public class FightManager {
     @Getter
     private HostileNPC currentEnemy;
     private boolean isPlayerDefending = false;
 
+    /**
+     * Checks if a combat encounter is currently active.
+     * @return true if there is an active enemy; false otherwise.
+     */
     public boolean isFighting() {
         return currentEnemy != null;
     }
 
+    /**
+     * Attempts to initiate combat based on the NPCs present at the player's current location side.
+     * @param game The main game instance.
+     */
     public void startFight(Game game) {
         Player player = game.getPlayer();
         Side side = player.getCurrentSide();
@@ -42,6 +53,12 @@ public class FightManager {
         }
     }
 
+    /**
+     * Executes a player attack turn. If not currently in combat, attempts to start one.
+     * If the enemy survives the attack, triggers the monster's counter-turn.
+     * @param game The main game instance.
+     * @return {@link PostCommandActionType#DEAD} if the player dies, otherwise {@link PostCommandActionType#NONE}.
+     */
     public PostCommandActionType performAttack(Game game) {
         if (!isFighting()) {
             startFight(game);
@@ -66,6 +83,11 @@ public class FightManager {
         return performMonsterTurn(game);
     }
 
+    /**
+     * Sets the player's state to defending, reducing incoming damage for the next monster attack.
+     * @param game The main game instance.
+     * @return {@link PostCommandActionType#DEAD} if the player dies, otherwise {@link PostCommandActionType#NONE}.
+     */
     public PostCommandActionType performDefense(Game game) {
         if (!isFighting()) {
             System.out.println("there is nothing to defend against");
@@ -81,6 +103,11 @@ public class FightManager {
         return result;
     }
 
+    /**
+     * Logic for the enemy's turn. Calculates damage dealt to the player,
+     * @param game The main game instance.
+     * @return {@link PostCommandActionType#DEAD} if player health drops to 0; otherwise {@link PostCommandActionType#NONE}.
+     */
     private PostCommandActionType performMonsterTurn(Game game) {
         Player player = game.getPlayer();
         int damage = currentEnemy.getStrength();
@@ -108,6 +135,11 @@ public class FightManager {
         return PostCommandActionType.NONE;
     }
 
+    /**
+     * Cleans up the combat state after an enemy is defeated.
+     * @param game The main game instance.
+     * @return {@link PostCommandActionType#NONE}.
+     */
     private PostCommandActionType handleVictory(Game game) {
         System.out.println("u have defeated " + currentEnemy.getName());
 

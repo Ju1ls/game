@@ -20,7 +20,7 @@ public class UseItemCommand extends Command {
      * Executes the logic to find and use a specific item.
      * @param args Arguments passed by the user, where {@code args[0]} is expected to be the item name.
      * @param game The main game instance.
-     * @return PostCommandActionType.NONE.
+     * @return {@link PostCommandActionType#NONE}.
      * @throws RuntimeException if the specific {@link Item#useItem(Game)} logic throws an exception.
      */
     @Override

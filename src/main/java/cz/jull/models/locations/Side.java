@@ -26,7 +26,7 @@ public class Side {
     @Override
     public String toString() {
         return "Side{" +
-                "neighbor='" + neighbor + '\'' +
+                "neighbor='" + (neighbor != null ? neighbor.getName() : "null") + '\'' +
                 ", npcs=" + npcs +
                 ", items=" + items +
                 '}';

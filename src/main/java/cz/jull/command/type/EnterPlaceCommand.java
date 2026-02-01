@@ -22,7 +22,7 @@ public class EnterPlaceCommand extends Command {
      * Method that executes the movement logic to transfer the player to the neighboring location.
      * @param args Arguments passed by the user (not used in this case).
      * @param game The main game instance.
-     * @return PostCommandActionType.NONE.
+     * @return {@link PostCommandActionType#NONE}.
      */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
@@ -32,11 +32,13 @@ public class EnterPlaceCommand extends Command {
         Location nextLocation = currentSide.getNeighbor();
         Direction currentDirection = null;
 
-        if (nextLocation == null) { // no neighbor
+        if (nextLocation == null) {
+            System.out.println("cant go here, no neighbor");// no neighbor
             return PostCommandActionType.NONE;
         }
 
-        if (nextLocation.isLocked()) { // locked location
+        if (nextLocation.isLocked()) {
+            System.out.println("location is locked");// locked location
             return PostCommandActionType.NONE;
         }
 
@@ -60,6 +62,7 @@ public class EnterPlaceCommand extends Command {
 
         player.setCurrentLocation(nextLocation);
         player.setCurrentSide(arrivalSide);
+        System.out.println("u entered: " + nextLocation);
 
         return PostCommandActionType.NONE;
     }

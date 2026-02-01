@@ -9,6 +9,9 @@ import cz.jull.models.locations.Location;
 import cz.jull.models.locations.Side;
 import lombok.Getter;
 
+/**
+ * Represents a command that changes the player's orientation within the current location.
+ */
 public class GoCommand extends Command {
 
     @Getter

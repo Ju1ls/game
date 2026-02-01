@@ -5,12 +5,22 @@ import cz.jull.Player;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Represents the mechanic responsible for managing oxygen consumption and suffocation.
+ */
 public class OxygenManager extends ScheduledTaskManager.Task {
     public OxygenManager(Game game) {
         super(1, TimeUnit.SECONDS, new OxygenDecreaser(game));
     }
 
+    /**
+     * The internal runnable logic that executes on the scheduled thread.
+     * @param game The main game instance.
+     */
     private record OxygenDecreaser(Game game) implements Runnable {
+        /**
+         * Executes the oxygen/health depletion cycle.
+         */
         @Override
         public void run() {
             Player player = game.getPlayer();

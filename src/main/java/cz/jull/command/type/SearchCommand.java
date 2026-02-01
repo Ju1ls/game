@@ -9,10 +9,19 @@ import lombok.Getter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a command that allows the player to search their current surroundings.
+ */
 public class SearchCommand extends Command {
     @Getter
     private final String name = "search";
 
+    /**
+     * Executes the search logic in the player's current location.
+     * @param args Arguments passed by the user (not used in this case).
+     * @param game The main game instance.
+     * @return PostCommandActionType.NONE.
+     */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
         List<Item> itemsInLocation = game.getPlayer().getCurrentSide().getItems();

@@ -6,23 +6,35 @@ import cz.jull.command.type.*;
 import java.util.HashSet;
 import java.util.Set;
 
+/**
+ * Manages the registration and execution of all game commands.
+ */
 public class CommandManager {
     private final Set<Command> commands = new HashSet<>();
 
+    /**
+     * Parses the user's input string, locates the corresponding command, and executes it.
+     * @param fullString The raw input string typed by the player.
+     * @param game The main game instance.
+     */
     public void runCommand(String fullString, Game game) {
         for (Command command : commands) {
             if (!fullString.startsWith(command.getName())) {
                 continue;
             }
 
-            String[] parts = fullString.replaceFirst(command.getName(), "").trim().split(" ");
+            String[] parts = fullString.replaceFirst("(?i)" + command.getName(), "").trim().split("\\s+");
 
+            if (parts.length == 1 && parts[0].isEmpty()) {
+                parts = new String[0];
+            }
             PostCommandActionType type = command.execute(parts, game);
             switch (type) {
                 case NONE -> {
                 }
                 case DEAD -> {
                     System.out.println("U are dead");
+                    System.exit(0);
                 }
                 case EXIT -> {
                     System.exit(0);
@@ -31,6 +43,9 @@ public class CommandManager {
         }
     }
 
+    /**
+     * Registers all available commands into the internal set.
+     */
     public void initialization() {
         commands.add(new AnswerCommand());
         commands.add(new AttackCommand());
@@ -46,6 +61,7 @@ public class CommandManager {
         commands.add(new StopDialogCommand());
         commands.add(new TakeItemCommand());
         commands.add(new TalkCommand());
+        commands.add(new ThrowItemCommand());
         commands.add(new UseItemCommand());
     }
 }

@@ -10,6 +10,9 @@ import lombok.Setter;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Represents a tangible object within the game world that the player can interact with.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -27,6 +30,11 @@ public class Item {
         this.id = id;
     }
 
+    /**
+     * Executes the specific effect associated with this item's ID.
+     * @param game The main game instance.
+     * @throws Exception if specific setter logic fails.
+     */
     public void useItem(Game game) throws Exception {
         if (!usable) {
             return;
@@ -34,7 +42,7 @@ public class Item {
         Player player = game.getPlayer();
         switch (id) {
             case "item_emf_detector" -> {
-
+                //TODO
             }
             case "item_oxygen_mask" -> {
                 usable = false;

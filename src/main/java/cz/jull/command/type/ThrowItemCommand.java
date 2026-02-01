@@ -10,10 +10,22 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * Represents a command that allows the player to throw an item in a specific direction.
+ */
 public class ThrowItemCommand extends Command {
     @Getter
     private final String name = "throw";
 
+    /**
+     * Executes the throw logic, removing the item and aggregating NPCs to the target side.
+     * @param args Arguments passed by the user.
+     *      * <ul>
+     *      * <li>{@code args[0]}: The name of the item to throw.</li>
+     *      * <li>{@code args[1]}: The direction to throw (NORTH, SOUTH, EAST, WEST).</li>
+     * @param game The main game instance.
+     * @return PostCommandActionType.NONE.
+     */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
         List<Item> inventory = game.getPlayer().getInventory();
@@ -25,6 +37,7 @@ public class ThrowItemCommand extends Command {
                 continue;
             }
             game.getPlayer().removeItemFromInventory(item);
+            break;
         }
 
         List<NPC> north = game.getPlayer().getCurrentLocation().getSides().get(Direction.NORTH).getNpcs();

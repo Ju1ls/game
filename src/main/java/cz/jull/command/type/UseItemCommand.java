@@ -8,13 +8,28 @@ import lombok.Getter;
 
 import java.util.List;
 
+/**
+ * Represents a command that allows the player to utilize an item from their inventory.
+ */
 public class UseItemCommand extends Command {
     @Getter
     private final String name = "use";
 
 
+    /**
+     * Executes the logic to find and use a specific item.
+     * @param args Arguments passed by the user, where {@code args[0]} is expected to be the item name.
+     * @param game The main game instance.
+     * @return PostCommandActionType.NONE.
+     * @throws RuntimeException if the specific {@link Item#useItem(Game)} logic throws an exception.
+     */
     @Override
     public PostCommandActionType execute(String[] args, Game game) {
+        if (args == null || args.length == 0) {
+            System.out.println("U must specify which item to use");
+            return PostCommandActionType.NONE;
+        }
+
         List<Item> inventory = game.getPlayer().getInventory();
         String itemNameArg = args[0].toLowerCase();
         for (Item item : inventory) {

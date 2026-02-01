@@ -5,13 +5,22 @@ import cz.jull.Player;
 
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Represents the mechanic responsible for the passive degradation of the player's mental state.
+ */
 public class MentalHealthManager extends ScheduledTaskManager.Task{
     public MentalHealthManager(Game game) {
         super(5, TimeUnit.SECONDS, new MentalHealthDecreaser(game));
     }
 
+    /**
+     * The internal runnable logic that executes on the scheduled thread.
+     * @param game The main game instance.
+     */
     private record MentalHealthDecreaser(Game game) implements Runnable {
-
+        /**
+         * Executes the sanity reduction cycle.
+         */
         @Override
         public void run() {
             Player player = game.getPlayer();

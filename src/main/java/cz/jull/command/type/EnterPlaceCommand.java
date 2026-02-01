@@ -11,6 +11,9 @@ import lombok.Getter;
 
 import java.util.Map;
 
+/**
+ * Represents a command that attempts to move the player from the current location to a neighboring one.
+ */
 public class EnterPlaceCommand extends Command {
     @Getter
     private final String name = "enter";

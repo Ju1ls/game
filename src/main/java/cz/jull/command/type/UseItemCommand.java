@@ -2,7 +2,7 @@ package cz.jull.command.type;
 
 import cz.jull.Game;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.models.Item;
 import lombok.Getter;
 
@@ -20,14 +20,13 @@ public class UseItemCommand extends Command {
      * Executes the logic to find and use a specific item.
      * @param args Arguments passed by the user, where {@code args[0]} is expected to be the item name.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      * @throws RuntimeException if the specific {@link Item#useItem(Game)} logic throws an exception.
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         if (args == null || args.length == 0) {
-            System.out.println("U must specify which item to use");
-            return PostCommandActionType.NONE;
+            return new Response("U must specify which item to use");
         }
 
         List<Item> inventory = game.getPlayer().getInventory();
@@ -44,6 +43,6 @@ public class UseItemCommand extends Command {
                 throw new RuntimeException(e);
             }
         }
-        return PostCommandActionType.NONE;
+        return new Response();
     }
 }

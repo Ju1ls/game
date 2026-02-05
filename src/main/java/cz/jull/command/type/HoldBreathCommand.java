@@ -2,7 +2,7 @@ package cz.jull.command.type;
 
 import cz.jull.Game;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.mechanics.OxygenManager;
 import lombok.Getter;
 
@@ -17,16 +17,16 @@ public class HoldBreathCommand extends Command {
      * Executes the breath-holding logic based on the player's current state.
      * @param args Arguments passed by the user (not used in this case).
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         if (game.getPlayer().getHoldingBreathTask() == null) {
             game.getPlayer().setHoldingBreathTask(game.getScheduledTaskManager().registerImmediately(new OxygenManager(game)));
         } else {
             game.getPlayer().getHoldingBreathTask().cancel(false);
             game.getPlayer().setHoldingBreathTask(null);
         }
-        return PostCommandActionType.NONE;
+        return new Response();
     }
 }

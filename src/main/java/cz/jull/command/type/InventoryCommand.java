@@ -2,7 +2,7 @@ package cz.jull.command.type;
 
 import cz.jull.Game;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.models.Item;
 import lombok.Getter;
 
@@ -20,15 +20,14 @@ public class InventoryCommand extends Command {
      * Executes the inventory management logic.
      * @param args Arguments passed by the user.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         List<Item> inventory = game.getPlayer().getInventory();
 
         if (inventory.isEmpty()) {
-            System.out.println("Your inventory is empty");
-            return PostCommandActionType.NONE;
+            return new Response("Your inventory is empty");
         }
 
         System.out.println("--- Your Inventory ---");
@@ -56,6 +55,6 @@ public class InventoryCommand extends Command {
             scanner.next();
             System.out.println("Invalid input");
         }
-        return PostCommandActionType.NONE;
+        return new Response();
     }
 }

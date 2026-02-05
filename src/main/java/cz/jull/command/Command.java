@@ -14,5 +14,5 @@ public abstract class Command {
      * @param game The main game instance.
      * @return PostCommandActionType.NONE.
      */
-    public abstract PostCommandActionType execute(String[] args, Game game);
+    public abstract Response execute(String[] args, Game game);
 }

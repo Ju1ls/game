@@ -2,7 +2,7 @@ package cz.jull.command.type;
 
 import cz.jull.Game;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import lombok.Getter;
 
 /**
@@ -16,11 +16,10 @@ public class AttackCommand extends Command {
      * Executes the attack sequence.
      * @param args Arguments passed by the user.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#DEAD} if the enemy's attack
-     * kills the player; otherwise {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         return game.getFightManager().performAttack(game);
     }
 }

@@ -3,7 +3,7 @@ package cz.jull.command.type;
 import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.models.Item;
 import lombok.Getter;
 
@@ -20,22 +20,20 @@ public class TakeItemCommand extends Command {
      * Executes the logic to transfer an item from the location to the player.
      * @param args Arguments passed by the user. {@code args[0]} represents the target item name.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         Player player = game.getPlayer();
 
         if (player.getCurrentSide() == null) {
-            System.out.println("u arent looking at anything specific where items could be");
-            return PostCommandActionType.NONE;
+            return new Response("u arent looking at anything specific where items could be");
         }
 
         List<Item> itemsInLocation = player.getCurrentSide().getItems();
 
         if (args.length == 0) {
-            System.out.println("what do u want to take");
-            return PostCommandActionType.NONE;
+            return new Response("what do u want to take");
         }
 
         String itemNameArg = args[0].toLowerCase();
@@ -53,17 +51,15 @@ public class TakeItemCommand extends Command {
         }
 
         if (itemToTake == null) {
-            System.out.println("item not found");
-            return PostCommandActionType.NONE;
+            return new Response("item not found");
         }
         if (player.getInventory().size() >= 6) {
-            System.out.println("cant have more than 6 things");
-            return PostCommandActionType.NONE;
+            return new Response("cant have more than 6 things");
         }
 
         player.addItemToInventory(itemToTake);
         itemsInLocation.remove(itemToTake);
 
-        return PostCommandActionType.NONE;
+        return new Response();
     }
 }

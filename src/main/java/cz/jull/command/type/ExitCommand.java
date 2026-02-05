@@ -3,6 +3,7 @@ package cz.jull.command.type;
 import cz.jull.Game;
 import cz.jull.command.Command;
 import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import lombok.Getter;
 
 /**
@@ -16,10 +17,10 @@ public class ExitCommand extends Command {
      * Triggers the game termination sequence.
      * @param args Arguments passed by the user.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
-        return PostCommandActionType.EXIT;
+    public Response execute(String[] args, Game game) {
+        return new Response(PostCommandActionType.EXIT);
     }
 }

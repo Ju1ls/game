@@ -2,7 +2,7 @@ package cz.jull.command.type;
 
 import cz.jull.Game;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.models.Item;
 import cz.jull.models.locations.Direction;
 import cz.jull.models.locations.Location;
@@ -29,13 +29,12 @@ public class ThrowItemCommand extends Command {
      *      * <li>{@code args[0]}: The name of the item to throw.</li>
      *      * <li>{@code args[1]}: The direction to throw (north, south, east, west).</li>
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         if (args.length < 2) {
-            System.out.println("type what to throw and where");
-            return PostCommandActionType.NONE;
+            return new Response("type what to throw and where");
         }
 
         String directionStr = args[args.length - 1];
@@ -43,8 +42,7 @@ public class ThrowItemCommand extends Command {
         try {
             targetDirection = Direction.fromString(directionStr);
         } catch (IllegalArgumentException e) {
-            System.out.println(directionStr + " is not a valid direction");
-            return PostCommandActionType.NONE;
+            return new Response(directionStr + " is not a valid direction");
         }
 
         StringBuilder itemNameBuilder = new StringBuilder();
@@ -64,8 +62,7 @@ public class ThrowItemCommand extends Command {
                 });
 
         if (itemsToThrow.isEmpty()) {
-            System.out.println("u don't have a " + itemNameArg + " to throw.");
-            return PostCommandActionType.NONE;
+            return new Response("u don't have a " + itemNameArg + " to throw.");
         }
 
         Location currentLocation = game.getPlayer().getCurrentLocation();
@@ -99,11 +96,9 @@ public class ThrowItemCommand extends Command {
 
         System.out.println("u threw the " + itemNameArg + " " + directionStr);
         if (hostileMoved) {
-            System.out.println("monster moved ");
+            return new Response("monster moved ");
         } else {
-            System.out.println("no monster noticed");
+            return new Response("no monster noticed");
         }
-
-        return PostCommandActionType.NONE;
     }
 }

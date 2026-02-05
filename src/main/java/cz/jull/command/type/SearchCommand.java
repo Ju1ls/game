@@ -2,7 +2,7 @@ package cz.jull.command.type;
 
 import cz.jull.Game;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.models.Item;
 import lombok.Getter;
 
@@ -20,10 +20,10 @@ public class SearchCommand extends Command {
      * Executes the search logic in the player's current location.
      * @param args Arguments passed by the user (not used in this case).
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         List<Item> itemsInLocation = game.getPlayer().getCurrentSide().getItems();
         List<Item> unhiddenItems = new ArrayList<>();
 
@@ -33,8 +33,6 @@ public class SearchCommand extends Command {
                 item.setHidden(false);
             }
         }
-        System.out.println("Items you found: " + unhiddenItems);
-
-        return PostCommandActionType.NONE;
+        return new Response("Items you found: " + unhiddenItems);
     }
 }

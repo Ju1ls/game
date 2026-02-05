@@ -28,7 +28,11 @@ public class CommandManager {
             if (parts.length == 1 && parts[0].isEmpty()) {
                 parts = new String[0];
             }
-            PostCommandActionType type = command.execute(parts, game);
+            Response response = command.execute(parts, game);
+            PostCommandActionType type = response.type();
+            if (response.value() != null) {
+                System.out.println(response.value());
+            }
             switch (type) {
                 case NONE -> {
                 }

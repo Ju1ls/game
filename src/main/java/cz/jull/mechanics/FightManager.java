@@ -3,6 +3,7 @@ package cz.jull.mechanics;
 import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.models.locations.Side;
 import cz.jull.models.npc.HostileNPC;
 import cz.jull.models.npc.NPC;
@@ -57,12 +58,12 @@ public class FightManager {
      * Executes a player attack turn. If not currently in combat, attempts to start one.
      * If the enemy survives the attack, triggers the monster's counter-turn.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#DEAD} if the player dies, otherwise {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
-    public PostCommandActionType performAttack(Game game) {
+    public Response performAttack(Game game) {
         if (!isFighting()) {
             startFight(game);
-            if (!isFighting()) return PostCommandActionType.NONE;
+            if (!isFighting()) new Response();
         }
 
         Player player = game.getPlayer();
@@ -86,18 +87,17 @@ public class FightManager {
     /**
      * Sets the player's state to defending, reducing incoming damage for the next monster attack.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#DEAD} if the player dies, otherwise {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
-    public PostCommandActionType performDefense(Game game) {
+    public Response performDefense(Game game) {
         if (!isFighting()) {
-            System.out.println("there is nothing to defend against");
-            return PostCommandActionType.NONE;
+            return new Response("there is nothing to defend against");
         }
 
         System.out.println("u brace yourself for an incoming attack...");
         this.isPlayerDefending = true;
 
-        PostCommandActionType result = performMonsterTurn(game);
+        Response result = performMonsterTurn(game);
 
         this.isPlayerDefending = false;
         return result;
@@ -106,9 +106,9 @@ public class FightManager {
     /**
      * Logic for the enemy's turn. Calculates damage dealt to the player,
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#DEAD} if player health drops to 0; otherwise {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
-    private PostCommandActionType performMonsterTurn(Game game) {
+    private Response performMonsterTurn(Game game) {
         Player player = game.getPlayer();
         int damage = currentEnemy.getStrength();
 
@@ -129,18 +129,18 @@ public class FightManager {
         }
 
         if (player.getHealth() <= 0) {
-            return PostCommandActionType.DEAD;
+            return new Response(PostCommandActionType.DEAD);
         }
 
-        return PostCommandActionType.NONE;
+        return new Response();
     }
 
     /**
      * Cleans up the combat state after an enemy is defeated.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
-    private PostCommandActionType handleVictory(Game game) {
+    private Response handleVictory(Game game) {
         System.out.println("u have defeated " + currentEnemy.getName());
 
         game.getPlayer().getCurrentSide().getNpcs().remove(currentEnemy);
@@ -148,7 +148,7 @@ public class FightManager {
         currentEnemy = null;
         isPlayerDefending = false;
 
-        return PostCommandActionType.NONE;
+        return new Response();
     }
 }
 

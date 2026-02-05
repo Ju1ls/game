@@ -4,6 +4,7 @@ import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.command.Command;
 import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import lombok.Getter;
 
 import java.io.InputStream;
@@ -20,10 +21,10 @@ public class HelpCommand extends Command {
      * Executes the help logic.
      * @param args Arguments passed by the user.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         Player player = game.getPlayer();
 
         try (InputStream stream = PostCommandActionType.class.getClassLoader().getResourceAsStream("help_command.txt")) {
@@ -41,6 +42,6 @@ public class HelpCommand extends Command {
                 "Oxygen level: " + player.getOxygen() + "/100\n" +
                 "Current location: " + player.getCurrentLocation().getName() + "\n"
         );
-        return PostCommandActionType.NONE;
+        return new Response();
     }
 }

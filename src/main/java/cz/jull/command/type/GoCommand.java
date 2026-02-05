@@ -2,8 +2,8 @@ package cz.jull.command.type;
 
 import cz.jull.Game;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
 
+import cz.jull.command.Response;
 import cz.jull.models.locations.Direction;
 import cz.jull.models.locations.Location;
 import cz.jull.models.locations.Side;
@@ -21,20 +21,19 @@ public class GoCommand extends Command {
      * Rotates the player to face a specific direction within the current location.
      * @param args Arguments passed by the user (in this case directions like: "north", "south", "east" and "west").
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         if (args.length > 0) {
             Direction direction = Direction.fromString(args[0].toLowerCase());
             Location currentLoc = game.getPlayer().getCurrentLocation();
 
             Side nextSide = currentLoc.getSides().get(direction);
             game.getPlayer().setCurrentSide(nextSide);
-            System.out.println("u got to: " + nextSide);
+            return new Response("u got to: " + nextSide);
         } else {
-            System.out.println("go where?");
+            return new Response("go where?");
         }
-        return PostCommandActionType.NONE;
     }
 }

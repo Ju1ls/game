@@ -2,7 +2,7 @@ package cz.jull.command.type;
 
 import cz.jull.Game;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.models.locations.Side;
 import cz.jull.models.npc.FriendlyNPC;
 import cz.jull.models.npc.NPC;
@@ -21,19 +21,17 @@ public class TalkCommand extends Command {
      * Attempts to start a conversation.
      * @param args Arguments passed by the user.
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         if (game.getFightManager().isFighting()) {
-            System.out.println("You can't talk while fighting!");
-            return PostCommandActionType.NONE;
+            return new Response("You can't talk while fighting!");
         }
 
         Side currentSide = game.getPlayer().getCurrentSide();
         if (currentSide == null || currentSide.getNpcs() == null) {
-            System.out.println("There is no one here.");
-            return PostCommandActionType.NONE;
+            return new Response("There is no one here.");
         }
 
         Optional<NPC> npcOpt = currentSide.getNpcs().stream()
@@ -43,8 +41,8 @@ public class TalkCommand extends Command {
         if (npcOpt.isPresent()) {
             npcOpt.get().interact(game);
         } else {
-            System.out.println("There is no one friendly to talk to.");
+            return new Response("There is no one friendly to talk to.");
         }
-        return PostCommandActionType.NONE;
+        return new Response();
     }
 }

@@ -3,7 +3,7 @@ package cz.jull.command.type;
 import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.command.Command;
-import cz.jull.command.PostCommandActionType;
+import cz.jull.command.Response;
 import cz.jull.models.locations.Direction;
 import cz.jull.models.locations.Location;
 import cz.jull.models.locations.Side;
@@ -22,10 +22,10 @@ public class EnterPlaceCommand extends Command {
      * Method that executes the movement logic to transfer the player to the neighboring location.
      * @param args Arguments passed by the user (not used in this case).
      * @param game The main game instance.
-     * @return {@link PostCommandActionType#NONE}.
+     * @return {@link Response}
      */
     @Override
-    public PostCommandActionType execute(String[] args, Game game) {
+    public Response execute(String[] args, Game game) {
         Player player = game.getPlayer();
         Side currentSide = player.getCurrentSide();
         Location currentLocation = player.getCurrentLocation();
@@ -33,13 +33,11 @@ public class EnterPlaceCommand extends Command {
         Direction currentDirection = null;
 
         if (nextLocation == null) {
-            System.out.println("cant go here, no neighbor");// no neighbor
-            return PostCommandActionType.NONE;
+            return new Response("cant go here, no neighbor");
         }
 
         if (nextLocation.isLocked()) {
-            System.out.println("location is locked");// locked location
-            return PostCommandActionType.NONE;
+            return new Response("location is locked");
         }
 
         for (Map.Entry<Direction, Side> entry : currentLocation.getSides().entrySet()) {
@@ -50,20 +48,19 @@ public class EnterPlaceCommand extends Command {
         }
 
         if (currentDirection == null) {
-            return PostCommandActionType.NONE;
+            return new Response();
         }
 
         Direction arrivalDirection = currentDirection.getOpposite();
         Side arrivalSide = nextLocation.getSides().get(arrivalDirection);
 
         if (arrivalSide == null) { // shouldn't happen, but I'd rather put it here
-            return PostCommandActionType.NONE;
+            return new Response();
         }
 
         player.setCurrentLocation(nextLocation);
         player.setCurrentSide(arrivalSide);
-        System.out.println("u entered: " + nextLocation);
 
-        return PostCommandActionType.NONE;
+        return new Response("u entered: " + nextLocation);
     }
 }

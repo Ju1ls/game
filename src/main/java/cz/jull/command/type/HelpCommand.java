@@ -35,13 +35,10 @@ public class HelpCommand extends Command {
             e.printStackTrace();
         }
 
-
-        System.out.println("Stats: \n" +
+        return new Response("Stats: \n" +
                 "Health: " + player.getHealth() + "/100\n" +
-                "Mental health: " + player.getHealth() + "/100\n" +
+                "Mental health: " + player.getMentalHealth() + "/100\n" +
                 "Oxygen level: " + player.getOxygen() + "/100\n" +
-                "Current location: " + player.getCurrentLocation().getName() + "\n"
-        );
-        return new Response();
+                "Current location: " + player.getCurrentLocation().getName() + "\n");
     }
 }

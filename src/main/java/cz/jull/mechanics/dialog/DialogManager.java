@@ -27,7 +27,7 @@ public class DialogManager {
      * @param rootDialog The starting point (root) of the dialogue tree.
      */
     public void startDialog(Game game, FriendlyNPC npc, Dialog rootDialog) {
-        this.currentNpc = npc;
+        currentNpc = npc;
         transitionTo(game, rootDialog);
     }
 
@@ -38,8 +38,8 @@ public class DialogManager {
         if (currentNpc != null) {
             System.out.println("You stopped talking to " + currentNpc.getName() + ".");
         }
-        this.currentNpc = null;
-        this.currentDialog = null;
+        currentNpc = null;
+        currentDialog = null;
     }
 
     /**
@@ -66,8 +66,8 @@ public class DialogManager {
         } else {
             System.out.println("There is no question to answer here.");
 
-            if (currentDialog.getOnEnd() instanceof DialogOnEnd.Continue cont) {
-                transitionTo(game, cont.nextDialog());
+            if (currentDialog.getOnEnd() instanceof DialogOnEnd.Continue(Dialog nextDialog)) {
+                transitionTo(game, nextDialog);
             }
         }
     }
@@ -78,7 +78,7 @@ public class DialogManager {
      * @param next The next {@link Dialog} to display.
      */
     private void transitionTo(Game game, Dialog next) {
-        this.currentDialog = next;
+        currentDialog = next;
 
         printCurrentState();
 
@@ -86,11 +86,11 @@ public class DialogManager {
             currentDialog.getOnStartAction().accept(game);
         }
 
-        if (currentDialog.getOnEnd() instanceof DialogOnEnd.Continue cont) {
-            transitionTo(game, cont.nextDialog());
+        if (currentDialog.getOnEnd() instanceof DialogOnEnd.Continue(Dialog nextDialog)) {
+            transitionTo(game, nextDialog);
         } else if (currentDialog.getOnEnd() == null) {
-            this.currentNpc = null;
-            this.currentDialog = null;
+            currentNpc = null;
+            currentDialog = null;
         }
     }
 

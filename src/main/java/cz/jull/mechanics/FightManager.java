@@ -45,7 +45,7 @@ public class FightManager {
                 .findFirst();
 
         if (hostile.isPresent()) {
-            this.currentEnemy = (HostileNPC) hostile.get();
+            currentEnemy = (HostileNPC) hostile.get();
             System.out.println("--- COMBAT STARTED ---");
             System.out.println("u are facing " + currentEnemy.getName());
             System.out.println("health: " + currentEnemy.getHealth() + " | strength: " + currentEnemy.getStrength());
@@ -95,11 +95,11 @@ public class FightManager {
         }
 
         System.out.println("u brace yourself for an incoming attack...");
-        this.isPlayerDefending = true;
+        isPlayerDefending = true;
 
         Response result = performMonsterTurn(game);
 
-        this.isPlayerDefending = false;
+        isPlayerDefending = false;
         return result;
     }
 

@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class MentalHealthManager extends ScheduledTaskManager.Task{
     public MentalHealthManager(Game game) {
-        super(10, TimeUnit.SECONDS, new MentalHealthDecreaser(game));
+        super(1, TimeUnit.MINUTES, new MentalHealthDecreaser(game));
     }
 
     /**

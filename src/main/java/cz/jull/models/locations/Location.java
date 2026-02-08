@@ -27,13 +27,9 @@ public class Location {
 
     @Override
     public String toString() {
-        return "Location{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", locked=" + locked +
-                ", items_unlocked=" + items_unlocked +
-                ", sides=" + sides +
-                '}';
+        return "Location: \n" +
+                "name: " + name + "\n"+
+                "description: " + description + "\n"+
+                "sides: " + sides;
     }
 }

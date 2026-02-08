@@ -111,11 +111,8 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", description='" + description + '\'' +
-                ", hidden=" + hidden +
-                '}';
+        return "\nItem: \n" +
+                "name: " + name + "\n"+
+                "description: " + description;
     }
 }

@@ -36,7 +36,7 @@ public class Game {
 
     public void startGame() throws IOException {
         loadGame();
-        //scheduledTaskManager.startAll();
+        scheduledTaskManager.startAll();
         player.setCurrentLocation(gameData.getLocations().getFirst());
         commandManager.initialization();
         while (true) { //for testing
@@ -47,7 +47,7 @@ public class Game {
 
     private void loadGame() throws IOException {
         gameData = GameData.loadGameDataFromResources();
-        //scheduledTaskManager.register(new MentalHealthManager(this));
-        //scheduledTaskManager.register(new DetectorBatteryManager(this));
+        scheduledTaskManager.register(new MentalHealthManager(this));
+        scheduledTaskManager.register(new DetectorBatteryManager(this));
     }
 }

@@ -10,7 +10,7 @@ import java.util.concurrent.TimeUnit;
  */
 public class MentalHealthManager extends ScheduledTaskManager.Task{
     public MentalHealthManager(Game game) {
-        super(5, TimeUnit.SECONDS, new MentalHealthDecreaser(game));
+        super(10, TimeUnit.SECONDS, new MentalHealthDecreaser(game));
     }
 
     /**
@@ -25,7 +25,11 @@ public class MentalHealthManager extends ScheduledTaskManager.Task{
         public void run() {
             Player player = game.getPlayer();
             try {
-                player.setMentalHealth(player.getMentalHealth() - 1);
+                if (player.getCurrentLocation().getId().equals("loc_prefab_houses") || player.getCurrentLocation().getId().equals("loc_train_station")) {
+                    player.setMentalHealth(player.getMentalHealth() - 2);
+                } else {
+                    player.setMentalHealth(player.getMentalHealth() - 1);
+                }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }

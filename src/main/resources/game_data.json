@@ -3,7 +3,7 @@
     {
       "id": "loc_abandoned_store",
       "name": "Abandoned store",
-      "description": "TODO",
+      "description": "The starting point of the story. It is a looted convenience store, where thick dust has settled on the empty shelves. The aisles are silent, bearing the scars of a chaotic past.",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -14,7 +14,7 @@
             {
               "id": "item_emf_detector",
               "name": "detector",
-              "description": "TODO",
+              "description": "A handheld device used to detect electromagnetic fluctuations caused by nearby threats. It can be switched between low and high-frequency bands to scan the environment. Requires batteries to operate.",
               "hidden": false
             }
           ]
@@ -26,7 +26,7 @@
             {
               "id": "item_knife",
               "name": "Knife",
-              "description": "TODO",
+              "description": "A basic sharp blade. While simple, it is a necessary tool for close-quarters self-defense when flight is no longer an option.",
               "hidden": false
             }
           ]
@@ -46,7 +46,7 @@
     {
       "id": "loc_big_park",
       "name": "Big park",
-      "description": "TODO",
+      "description": "Nature has reclaimed this place. The paths and benches have disappeared under dense, impenetrable vegetation. Unlike the rest of the city, it is eerily quiet here. There are no enemies, but the silence only makes the isolation feel heavier.",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -75,7 +75,7 @@
     {
       "id": "loc_train_station",
       "name": "Train station",
-      "description": "TODO",
+      "description": "A defunct transport hub where the rails have long been devoured by rust. The vast, empty halls of the waiting rooms and ticket offices stand as hollow monuments to a time when travelers still passed through.",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -88,12 +88,12 @@
               "name": "The Drifter",
               "health": 100,
               "strength": 15,
-              "description": "TODO",
+              "description": "A restless creature that roams aimlessly through the ruins. While physically weaker than other aberrations, it remains a lethal threat to the careless, serving as a constant reminder that the city belongs to the monsters now.",
               "items": [
                 {
                   "id": "item_first_key",
                   "name": "First key",
-                  "description": "TODO",
+                  "description": "Heavy metal key",
                   "hidden": false
                 }
               ]
@@ -108,7 +108,7 @@
             {
               "id": "item_batteries",
               "name": "Batteries",
-              "description": "TODO",
+              "description": "Standard power cells. They are a scarce and versatile resource, essential for powering electronic devices or trading for other goods.",
               "hidden": true
             }
           ]
@@ -128,7 +128,7 @@
     {
       "id": "loc_botanical_garden",
       "name": "Botanical garden",
-      "description": "TODO",
+      "description": "A devastated greenhouse where lush, uncontrolled vegetation mixes with piles of sharp shards from broken window panes. The structure stands in ruin, overgrown and dangerous.",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -144,18 +144,18 @@
               "id": "npc_friendly_eleanor_clarke",
               "type": "friendly",
               "name": "Dr. Eleanor Clarke",
-              "description": "TODO",
+              "description": "A former physician teetering on the edge of a mental breakdown. The horrors of the city have shattered her psyche, leaving her trapped in a state of paranoia and panic, barely holding on to reality.",
               "items": [
                 {
                   "id": "item_second_key",
                   "name": "Second key",
-                  "description": "TODO",
+                  "description": "Heavy metal key.",
                   "hidden": false
                 },
                 {
                   "id": "item_medkit",
                   "name": "Medkit",
-                  "description": "TODO",
+                  "description": "A compact case containing sterile bandages and antiseptics. Using it treats wounds and restores 10% of your physical health.",
                   "hidden": false
                 }
               ]
@@ -175,7 +175,7 @@
             {
               "id": "item_glass_shard",
               "name": "Glass shard",
-              "description": "TODO",
+              "description": "Sharp fragments of broken glass. They can be thrown to create noise, serving as a distraction to lure enemies away from your position.",
               "hidden": false
             }
           ]
@@ -185,7 +185,7 @@
     {
       "id": "loc_metro",
       "name": "Metro",
-      "description": "TODO",
+      "description": "A deep underground system where the trains have long ceased to run. The platforms are shrouded in darkness, and the tunnels stretch out into the gloom, silent and still.",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -201,18 +201,18 @@
               "id": "npc_friendly_arthur",
               "type": "friendly",
               "name": "Arthur",
-              "description": "TODO",
+              "description": "A broken man consumed by deep depression. He haunts the shadows, having completely lost the will to fight or survive. Resigned to his fate, he possesses knowledge of the world that others have forgotten.",
               "items": [
                 {
                   "id": "item_drugs",
                   "name": "Drugs",
-                  "description": "TODO",
+                  "description": "Dangerous substance that numbs the mind. Consuming it improves mental stability by 10% but degrades physical health by 15%.",
                   "hidden": false
                 },
                 {
                   "id": "item_alcohol",
                   "name": "Alcohol",
-                  "description": "TODO",
+                  "description": "Dangerous substance that numbs the mind. Consuming it improves mental stability by 10% but degrades physical health by 15%.",
                   "hidden": false
                 }
               ]
@@ -235,7 +235,7 @@
     {
       "id": "loc_tunnel",
       "name": "Tunnel",
-      "description": "TODO",
+      "description": "A dark, claustrophobic connector beneath the city surface. The atmosphere is oppressive, and the air is thick and heavily polluted, making it difficult to breathe in the depths.",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -246,7 +246,7 @@
             {
               "id": "item_fourth_key",
               "name": "Fourth key",
-              "description": "TODO",
+              "description": "Heavy metal key.",
               "hidden": true
             }
           ]
@@ -271,7 +271,7 @@
     {
       "id": "loc_prefab_houses",
       "name": "Prefab houses",
-      "description": "TODO",
+      "description": "A towering concrete maze that once served as housing for the city's residents. Now, the gray buildings stand desolate, forming a confusing labyrinth of hallways and stairs.",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -289,12 +289,12 @@
               "name": "The Blind Stalker",
               "health": 100,
               "strength": 25,
-              "description": "TODO",
+              "description": "A massive, dangerous monstrosity. Although completely blind, it possesses unnaturally acute hearing. It stalks the darkness, capable of pinpointing the slightest noise—even the sound of breathing—to hunt its prey.",
               "items": [
                 {
                   "id": "item_third_key",
                   "name": "Third key",
-                  "description": "TODO",
+                  "description": "Heavy metal key.",
                   "hidden": false
                 }
               ]
@@ -317,7 +317,7 @@
     {
       "id": "loc_power_station",
       "name": "Power station",
-      "description": "TODO",
+      "description": "A silent facility that no longer produces energy. Despite the lack of activity, a heavy, vibrating hum resonates through the structure, louder here than anywhere else in the city.",
       "locked": false,
       "items_unlocked": [],
       "sides": {
@@ -333,12 +333,12 @@
               "id": "npc_friendly_miller",
               "type": "friendly",
               "name": "Miller",
-              "description": "TODO",
+              "description": "A pragmatic survivor who understands the value of resources in a dying world. He is a man of business who has managed to scavenge useful equipment, waiting for the right opportunity to make a deal.",
               "items": [
                 {
                   "id": "item_oxygen_mask",
                   "name": "Oxygen mask",
-                  "description": "TODO",
+                  "description": "Vital protection against toxic environments. When equipped, it filters the air and restores oxygen levels to 100% for a limited duration. Single-use only.",
                   "hidden": false
                 }
               ]
@@ -361,7 +361,7 @@
     {
       "id": "loc_bunker",
       "name": "Bunker",
-      "description": "TODO",
+      "description": "The final destination and the only truly safe place. Massive steel doors stand firmly shut, separating the harsh outside world from the salvation that lies within.",
       "locked": true,
       "items_unlocked": ["item_first_key","item_second_key","item_third_key","item_fourth_key"],
       "sides": {

@@ -63,7 +63,7 @@ To run this game locally, you will need **Java 24**.
 
 
 Libraries used:
-* [Lombook (v1.18.38)](https://projectlombok.org/)
+* [Lombok (v1.18.38)](https://projectlombok.org/)
 * [Jackson Databind (v2.15.1)](https://github.com/FasterXML/jackson-databind) 
 
 

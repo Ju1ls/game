@@ -41,8 +41,10 @@ public class Game {
         scheduledTaskManager.startAll();
         player.setCurrentLocation(gameData.getLocations().getFirst());
         commandManager.initialization();
+        System.out.println(initialDialog());
 
         while (running) {
+            System.out.print(">>");
             if (commandManager.runCommand(scanner.nextLine(), this)) {
                 running = false;
             }
@@ -54,5 +56,13 @@ public class Game {
         gameData = GameData.loadGameDataFromResources();
         scheduledTaskManager.register(new MentalHealthManager(this));
         scheduledTaskManager.register(new DetectorBatteryManager(this));
+    }
+
+    private String initialDialog() {
+        return """
+                You wake up in an abandoned store, feeling extremely confused and with no memory of what happened or how you got there.\s
+                As Aris, you must now explore the ruined city to find your way to safety.\s
+                \nType your first command (type 'help' for more commands):\s""";
+
     }
 }

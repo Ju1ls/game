@@ -19,6 +19,10 @@ public class CommandManager {
      * @return true or false based on if the game is over or not.
      */
     public boolean runCommand(String fullString, Game game) {
+        if (fullString == null || fullString.trim().isEmpty()) {
+            return false;
+        }
+
         for (Command command : commands) {
             if (!fullString.startsWith(command.getName())) {
                 continue;
@@ -31,6 +35,7 @@ public class CommandManager {
             }
             Response response = command.execute(parts, game);
             PostCommandActionType type = response.type();
+
             if (response.value() != null) {
                 System.out.println(response.value());
             }
@@ -48,6 +53,7 @@ public class CommandManager {
                 }
             }
         }
+        System.out.println("Invalid command. Please try again.");
         return false;
     }
 

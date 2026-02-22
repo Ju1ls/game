@@ -83,11 +83,20 @@ public class FriendlyNPC extends NPC {
      * @return A {@link Dialog} object where Arthur gifts items to the player.
      */
     private Dialog createArthurDialog(Game game) {
-        return new Dialog("Life is meaningless... take this, I won't need it anymore.", null, (g) -> {
+        Dialog reward = new Dialog("Also take this... it will help you in this city", null, (g) -> {
             giveItemToPlayer(g, "item_alcohol");
             giveItemToPlayer(g, "item_drugs");
             removeSelf(g);
         });
+
+        Dialog place = new Dialog("Okay, if you're gonna go to a Tunnel go to its end, there is a Bunker. \n" +
+                "But its locked. You will probably need some keys. Try to find them.", new DialogOnEnd.Continue(reward));
+
+        List<DialogOnEnd.AskQuestion.Answer> options = new ArrayList<>();
+        options.add(new DialogOnEnd.AskQuestion.Answer("Yes", place));
+
+        return new Dialog("This place is pretty dangerous. But i know about a place that can save you.\nWanna know about it?",
+                new DialogOnEnd.AskQuestion(null, options.toArray(DialogOnEnd.AskQuestion.Answer[]::new)));
     }
 
     /**
@@ -103,7 +112,7 @@ public class FriendlyNPC extends NPC {
         boolean hasAlcohol = playerHasItem(game.getPlayer(), "item_alcohol");
         boolean hasDrugs = playerHasItem(game.getPlayer(), "item_drugs");
 
-        Dialog giveKeyOnly = new Dialog("Take this key before I lose myself completely.", null,
+        Dialog giveKeyOnly = new Dialog("Take this key, it will help you.", null,
                 (g) -> {
                     giveItemToPlayer(g, "item_second_key");
                     removeSelf(g);
@@ -171,7 +180,7 @@ public class FriendlyNPC extends NPC {
             Item item = itemOpt.get();
             this.getItems().remove(item);
             game.getPlayer().addItemToInventory(item);
-            System.out.println("u received: " + item.getName());
+            System.out.println("You received: " + item.getName());
         } else {
             System.out.println("NPC missing item in JSON: " + itemId);
         }
@@ -190,7 +199,7 @@ public class FriendlyNPC extends NPC {
 
         if (itemToRemove.isPresent()) {
             player.removeItemFromInventory(itemToRemove.get());
-            System.out.println("u gave " + this.getName() + ": " + itemToRemove.get().getName());
+            System.out.println("You gave " + this.getName() + ": " + itemToRemove.get().getName());
         }
     }
 
@@ -199,6 +208,6 @@ public class FriendlyNPC extends NPC {
      */
     private void removeSelf(Game game) {
         game.getPlayer().getCurrentSide().getNpcs().remove(this);
-        System.out.println(this.getName() + " has left the area.");
+        System.out.println(this.getName() + " left.");
     }
 }

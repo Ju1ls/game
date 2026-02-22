@@ -34,7 +34,7 @@ public class ThrowItemCommand extends Command {
     @Override
     public Response execute(String[] args, Game game) {
         if (args.length < 2) {
-            return new Response("type what to throw and where");
+            return new Response("Type what to throw and where.");
         }
 
         String directionStr = args[args.length - 1];
@@ -42,7 +42,7 @@ public class ThrowItemCommand extends Command {
         try {
             targetDirection = Direction.fromString(directionStr);
         } catch (IllegalArgumentException e) {
-            return new Response(directionStr + " is not a valid direction");
+            return new Response(directionStr + " is not a valid direction.");
         }
 
         StringBuilder itemNameBuilder = new StringBuilder();
@@ -62,7 +62,7 @@ public class ThrowItemCommand extends Command {
                 });
 
         if (itemsToThrow.isEmpty()) {
-            return new Response("u don't have a " + itemNameArg + " to throw.");
+            return new Response("You don't have a " + itemNameArg + " to throw.");
         }
 
         Location currentLocation = game.getPlayer().getCurrentLocation();
@@ -94,11 +94,11 @@ public class ThrowItemCommand extends Command {
 
         targetItems.addAll(itemsToThrow);
 
-        System.out.println("u threw the " + itemNameArg + " " + directionStr);
+        System.out.println("You threw the " + itemNameArg + " " + directionStr);
         if (hostileMoved) {
-            return new Response("monster moved ");
+            return new Response("Monster moved.");
         } else {
-            return new Response("no monster noticed");
+            return new Response("No monster noticed.");
         }
     }
 }

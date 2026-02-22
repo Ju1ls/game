@@ -41,9 +41,6 @@ public abstract class NPC {
 
     @Override
     public String toString() {
-        return "NPC: \n" +
-                "name: " + name + "\n"+
-                "description: " + description + "\n"+
-                "items: " + items;
+        return "Name: " + name;
     }
 }

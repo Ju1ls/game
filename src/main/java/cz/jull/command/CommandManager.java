@@ -16,8 +16,9 @@ public class CommandManager {
      * Parses the user's input string, locates the corresponding command, and executes it.
      * @param fullString The raw input string typed by the player.
      * @param game The main game instance.
+     * @return true or false based on if the game is over or not.
      */
-    public void runCommand(String fullString, Game game) {
+    public boolean runCommand(String fullString, Game game) {
         for (Command command : commands) {
             if (!fullString.startsWith(command.getName())) {
                 continue;
@@ -35,17 +36,19 @@ public class CommandManager {
             }
             switch (type) {
                 case NONE -> {
+                    return false;
                 }
                 case DEAD -> {
-                    System.out.println("U are dead");
-                    System.exit(0);
+                    System.out.println("You died.");
+                    return true;
                 }
                 case EXIT -> {
                     System.out.println("Exiting...");
-                    System.exit(0);
+                    return true;
                 }
             }
         }
+        return false;
     }
 
     /**

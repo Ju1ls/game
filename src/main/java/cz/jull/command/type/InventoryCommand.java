@@ -27,7 +27,7 @@ public class InventoryCommand extends Command {
         List<Item> inventory = game.getPlayer().getInventory();
 
         if (inventory.isEmpty()) {
-            return new Response("Your inventory is empty");
+            return new Response("Your inventory is empty.");
         }
 
         System.out.println("--- Your Inventory ---");
@@ -49,11 +49,11 @@ public class InventoryCommand extends Command {
                 System.out.println("Name: " + selectedItem.getName());
                 System.out.println("Description: " + selectedItem.getDescription());
             } else if (choice != 0) {
-                System.out.println("Invalid selection");
+                System.out.println("Invalid selection.");
             }
         } else {
             scanner.next();
-            System.out.println("Invalid input");
+            System.out.println("Invalid input.");
         }
         return new Response();
     }

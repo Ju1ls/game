@@ -34,7 +34,7 @@ public class MentalHealthManager extends ScheduledTaskManager.Task{
                 throw new RuntimeException(e);
             }
             if (player.getMentalHealth() <= 0) {
-                System.out.println("u got insane");
+                System.out.println("You lost your sanity.");
                 System.exit(0);
             }
         }

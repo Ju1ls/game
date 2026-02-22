@@ -34,15 +34,20 @@ public class Game {
     @Getter
     private final Scanner scanner = new Scanner(System.in);
 
-    public void startGame() throws IOException {
+    private boolean running = true;
+
+    public void startGame() throws IOException, InterruptedException {
         loadGame();
         scheduledTaskManager.startAll();
         player.setCurrentLocation(gameData.getLocations().getFirst());
         commandManager.initialization();
-        while (true) { //for testing
-            commandManager.runCommand(scanner.nextLine(), this);
-        }
 
+        while (running) {
+            if (commandManager.runCommand(scanner.nextLine(), this)) {
+                running = false;
+            }
+        }
+        scheduledTaskManager.shutdown();
     }
 
     private void loadGame() throws IOException {

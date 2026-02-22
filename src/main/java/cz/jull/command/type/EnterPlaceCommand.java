@@ -33,11 +33,11 @@ public class EnterPlaceCommand extends Command {
         Direction currentDirection = null;
 
         if (nextLocation == null) {
-            return new Response("cant go here, no neighbor");
+            return new Response("You can't go here, there is a wall.");
         }
 
         if (nextLocation.isLocked()) {
-            return new Response("location is locked");
+            return new Response("Location is locked.");
         }
 
         for (Map.Entry<Direction, Side> entry : currentLocation.getSides().entrySet()) {
@@ -61,6 +61,6 @@ public class EnterPlaceCommand extends Command {
         player.setCurrentLocation(nextLocation);
         player.setCurrentSide(arrivalSide);
 
-        return new Response("u entered: " + nextLocation);
+        return new Response("You entered: " + nextLocation.getName());
     }
 }

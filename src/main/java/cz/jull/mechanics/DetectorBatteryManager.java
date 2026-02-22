@@ -30,13 +30,13 @@ public class DetectorBatteryManager extends ScheduledTaskManager.Task{
                     player.setDetectorBatteryLevel(current - 1);
                 }
                 if (player.getDetectorBatteryLevel() == 10) {
-                    System.out.println("u have low battery");
+                    System.out.println("You have low battery.");
                 }
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
             if (player.getDetectorBatteryLevel() <= 0) {
-                System.out.println("u cant use detector");
+                System.out.println("You can't use detector.");
             }
         }
     }

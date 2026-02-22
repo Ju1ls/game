@@ -37,7 +37,7 @@ public class OxygenManager extends ScheduledTaskManager.Task {
                 }
             }
             if (player.getHealth() <= 0) {
-                System.out.println("u r dead");
+                System.out.println("You died.");
                 System.exit(0);
             }
         }

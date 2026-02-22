@@ -13,7 +13,7 @@
           "items": [
             {
               "id": "item_emf_detector",
-              "name": "detector",
+              "name": "EMF detector",
               "description": "A handheld device used to detect electromagnetic fluctuations caused by nearby threats. It can be switched between low and high-frequency bands to scan the environment. Requires batteries to operate.",
               "hidden": false
             }

@@ -26,8 +26,8 @@ public class Side {
     @Override
     public String toString() {
         return "Side: \n" +
-                "neighbor: " + (neighbor != null ? neighbor.getName() : "null") + "\n" +
-                "npcs: " + npcs + "\n"+
-                "items: " + items;
+                "Location near: " + (neighbor != null ? neighbor.getName() : "none") + "\n" +
+                "Npcs: " + (!npcs.isEmpty() ? npcs : "none") + "\n"+
+                "Items: " + (!items.isEmpty() ? items : "none");
     }
 }

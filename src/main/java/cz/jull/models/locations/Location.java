@@ -28,8 +28,8 @@ public class Location {
     @Override
     public String toString() {
         return "Location: \n" +
-                "name: " + name + "\n"+
-                "description: " + description + "\n"+
-                "sides: " + sides;
+                "Name: " + name + "\n"+
+                "Description: " + description + "\n"+
+                "Sides: " + sides;
     }
 }

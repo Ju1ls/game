@@ -36,7 +36,7 @@ public class FightManager {
         Side side = player.getCurrentSide();
 
         if (side == null || side.getNpcs() == null) {
-            System.out.println("cant attack, no monster");
+            System.out.println("You can't attack, no monster nearby.");
             return;
         }
 
@@ -47,10 +47,11 @@ public class FightManager {
         if (hostile.isPresent()) {
             currentEnemy = (HostileNPC) hostile.get();
             System.out.println("--- COMBAT STARTED ---");
-            System.out.println("u are facing " + currentEnemy.getName());
-            System.out.println("health: " + currentEnemy.getHealth() + " | strength: " + currentEnemy.getStrength());
+            System.out.println("You are facing " + currentEnemy.getName());
+            System.out.println("Health: " + currentEnemy.getHealth() + " | Strength: " + currentEnemy.getStrength());
+            System.out.println();
         } else {
-            System.out.println("nothing hostile here");
+            System.out.println("Nothing hostile here.");
         }
     }
 
@@ -70,12 +71,14 @@ public class FightManager {
 
         int damage = player.getAttackDamage();
 
-        System.out.println("u attacked " + currentEnemy.getName() + " with " +
+        System.out.println("You attacked " + currentEnemy.getName() + " with " +
                 (player.getEquippedItem() != null ? player.getEquippedItem().getName() : "fists") +
-                " for " + damage + " damage"
+                " for " + damage + " damage."
         );
 
         currentEnemy.setHealth(currentEnemy.getHealth() - damage);
+
+        System.out.println(currentEnemy + " health: " + currentEnemy.getHealth() + "/100");
 
         if (currentEnemy.getHealth() <= 0) {
             return handleVictory(game);
@@ -91,10 +94,10 @@ public class FightManager {
      */
     public Response performDefense(Game game) {
         if (!isFighting()) {
-            return new Response("there is nothing to defend against");
+            return new Response("There is nothing to defend against.");
         }
 
-        System.out.println("u brace yourself for an incoming attack...");
+        System.out.println("You brace yourself for an incoming attack...");
         isPlayerDefending = true;
 
         Response result = performMonsterTurn(game);
@@ -114,16 +117,17 @@ public class FightManager {
 
         if (isPlayerDefending) {
             damage = Math.max(1, damage / 2);
-            System.out.println("u blocked part of the attack");
+            System.out.println("You blocked part of the attack");
         }
 
-        System.out.println(currentEnemy.getName() + " attacks you dealing " + damage + " damage");
+        System.out.println();
+        System.out.println(currentEnemy.getName() + " attacks you dealing " + damage + " damage.");
 
         int newHealth = Math.max(0, player.getHealth() - damage);
 
         try {
             player.setHealth(newHealth);
-            System.out.println("ur health: " + player.getHealth() + "/100");
+            System.out.println("Your health: " + player.getHealth() + "/100");
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -141,7 +145,7 @@ public class FightManager {
      * @return {@link Response}
      */
     private Response handleVictory(Game game) {
-        System.out.println("u have defeated " + currentEnemy.getName());
+        System.out.println("You have defeated " + currentEnemy.getName());
 
         game.getPlayer().getCurrentSide().getNpcs().remove(currentEnemy);
 

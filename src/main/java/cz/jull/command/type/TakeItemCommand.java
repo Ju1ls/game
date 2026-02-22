@@ -27,13 +27,13 @@ public class TakeItemCommand extends Command {
         Player player = game.getPlayer();
 
         if (player.getCurrentSide() == null) {
-            return new Response("u arent looking at anything specific where items could be");
+            return new Response("You aren't looking at anything specific where items could be.");
         }
 
         List<Item> itemsInLocation = player.getCurrentSide().getItems();
 
         if (args.length == 0) {
-            return new Response("what do u want to take");
+            return new Response("What do u want to take.");
         }
 
         String itemNameArg = args[0].toLowerCase();
@@ -51,10 +51,10 @@ public class TakeItemCommand extends Command {
         }
 
         if (itemToTake == null) {
-            return new Response("item not found");
+            return new Response("Item not found.");
         }
         if (player.getInventory().size() >= 6) {
-            return new Response("cant have more than 6 things");
+            return new Response("You can't have more than 6 things in your inventory.");
         }
 
         player.addItemToInventory(itemToTake);

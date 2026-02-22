@@ -91,7 +91,7 @@ public class Player {
 
     public void setOxygen(int oxygen) throws Exception {
         if (oxygen < 0) {
-            throw new Exception("oxygen cant have negative value");
+            throw new Exception("Oxygen can't have negative value.");
         }
 
         if (hasOxygenMask) {
@@ -102,7 +102,7 @@ public class Player {
 
     public void setMentalHealth(int mentalHealth) throws Exception {
         if (mentalHealth < 0) {
-            throw new Exception("mental health cant have negative value");
+            throw new Exception("Mental health can't have negative value.");
         }
         this.mentalHealth = mentalHealth;
     }

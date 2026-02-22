@@ -60,16 +60,16 @@ public class Item {
                 }
 
                 String mode = newFreq ? "HIGH FREQUENCY" : "LOW FREQUENCY";
-                System.out.println("detector switched to " + mode + " band");
+                System.out.println("Detector switched to " + mode + " band");
 
                 if (monsterDetected) {
                     if (newFreq) {
-                        System.out.println("detector is beeping fast");
+                        System.out.println("Detector is beeping fast.");
                     } else {
-                        System.out.println("detector is beeping slowly");
+                        System.out.println("Detector is beeping slowly.");
                     }
                 } else {
-                    System.out.println("all good");
+                    System.out.println("All good.");
                 }
             }
             case "item_oxygen_mask" -> {
@@ -111,8 +111,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "\nItem: \n" +
-                "name: " + name + "\n"+
-                "description: " + description;
+        return " \n" +
+                "Name: " + name + "\n";
     }
 }

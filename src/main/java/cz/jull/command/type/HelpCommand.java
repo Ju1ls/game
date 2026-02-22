@@ -39,6 +39,7 @@ public class HelpCommand extends Command {
                 "Health: " + player.getHealth() + "/100\n" +
                 "Mental health: " + player.getMentalHealth() + "/100\n" +
                 "Oxygen level: " + player.getOxygen() + "/100\n" +
+                "Battery level: " + player.getDetectorBatteryLevel() + "/100\n" +
                 "Current location: " + player.getCurrentLocation().getName() + "\n");
     }
 }

@@ -26,7 +26,7 @@ public class UseItemCommand extends Command {
     @Override
     public Response execute(String[] args, Game game) {
         if (args == null || args.length == 0) {
-            return new Response("U must specify which item to use");
+            return new Response("You must specify which item to use.");
         }
 
         List<Item> inventory = game.getPlayer().getInventory();

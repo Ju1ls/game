@@ -7,7 +7,7 @@ public class Main {
         Game game = new Game();
         try {
             game.startGame();
-        } catch (IOException e) {
+        } catch (IOException | InterruptedException e) {
             System.out.println(e.getMessage());
         }
     }

@@ -26,14 +26,29 @@ public class GoCommand extends Command {
     @Override
     public Response execute(String[] args, Game game) {
         if (args.length > 0) {
-            Direction direction = Direction.fromString(args[0].toLowerCase());
-            Location currentLoc = game.getPlayer().getCurrentLocation();
+            try {
+                Direction direction = Direction.fromString(args[0].toLowerCase());
+                Location currentLoc = game.getPlayer().getCurrentLocation();
 
-            Side nextSide = currentLoc.getSides().get(direction);
-            game.getPlayer().setCurrentSide(nextSide);
-            return new Response("u got to: " + nextSide);
+                Side nextSide = currentLoc.getSides().get(direction);
+
+                if (nextSide == null) {
+                    return new Response("You can't go that way.");
+                }
+
+                game.getPlayer().setCurrentSide(nextSide);
+
+                String resultText = "You headed " + direction.toString().toLowerCase() + ".\n" +
+                        "--------------------------------\n" +
+                        nextSide;
+
+                return new Response(resultText);
+
+            } catch (IllegalArgumentException e) {
+                return new Response("Invalid direction: " + args[0]);
+            }
         } else {
-            return new Response("go where?");
+            return new Response("Go where?");
         }
     }
 }

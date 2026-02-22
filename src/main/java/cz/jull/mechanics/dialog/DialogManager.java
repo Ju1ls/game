@@ -58,7 +58,7 @@ public class DialogManager {
 
             if (arrayIndex >= 0 && arrayIndex < question.answers().length) {
                 DialogOnEnd.AskQuestion.Answer selected = question.answers()[arrayIndex];
-                System.out.println("> " + selected.answer());
+                System.out.println(">>" + selected.answer());
                 transitionTo(game, selected.dialog());
             } else {
                 System.out.println("Invalid option number.");
@@ -100,7 +100,7 @@ public class DialogManager {
      */
     private void printCurrentState() {
         System.out.println("------------------------------------------------");
-        System.out.println(currentNpc.getName() + ": " + currentDialog.getText());
+        System.out.println("\u001B[36m" + currentNpc.getName() + "\u001B[0m" + ": " + currentDialog.getText());
 
         if (currentDialog.getOnEnd() instanceof DialogOnEnd.AskQuestion question) {
             for (int i = 0; i < question.answers().length; i++) {

@@ -33,6 +33,10 @@ public class SearchCommand extends Command {
                 item.setHidden(false);
             }
         }
+
+        if (unhiddenItems.isEmpty()) {
+            return new Response("No hidden items.");
+        }
         return new Response("Items you found: " + unhiddenItems);
     }
 }

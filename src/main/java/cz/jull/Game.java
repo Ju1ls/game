@@ -7,6 +7,7 @@ import cz.jull.mechanics.FightManager;
 import cz.jull.mechanics.MentalHealthManager;
 import cz.jull.mechanics.ScheduledTaskManager;
 import cz.jull.mechanics.dialog.DialogManager;
+import cz.jull.models.locations.Direction;
 import lombok.Getter;
 
 import java.io.IOException;
@@ -40,6 +41,7 @@ public class Game {
         loadGame();
         scheduledTaskManager.startAll();
         player.setCurrentLocation(gameData.getLocations().getFirst());
+        player.setCurrentSide(player.getCurrentLocation().getSides().get(Direction.NORTH));
         commandManager.initialization();
         System.out.println(initialDialog());
 

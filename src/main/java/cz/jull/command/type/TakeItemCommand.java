@@ -60,6 +60,6 @@ public class TakeItemCommand extends Command {
         player.addItemToInventory(itemToTake);
         itemsInLocation.remove(itemToTake);
 
-        return new Response();
+        return new Response("You took: " + itemToTake.getName());
     }
 }

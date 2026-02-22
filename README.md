@@ -1,12 +1,8 @@
 # 📻 19 Hz
 
----
-
 > *"The result is 'The Hum'. A permanent phenomenon causing visual hallucinations, paranoia, and cognitive failure."*
 
 ## ℹ️ About the Game
-
----
 
 The year is 2067. Following a massive solar flare, 
 the Earth is enveloped in a global standing electromagnetic wave at 19 Hz, 
@@ -20,8 +16,6 @@ safely reach the underground bunker.
 
 ## 🌟 Highlights
 
----
-
 - **Text-Based Survival**: Navigate a post-apocalyptic city through terminal commands.
 - **Sanity Mechanics**: Being near "The Hum" or monsters decreases your sanity. If it hits zero, the game ends.
 - **EMF Detector:** A vital tool for detecting monsters hidden in the fog. 
@@ -30,8 +24,6 @@ It consumes batteries and can be switched between frequency bands.
   strict 6-slot item inventory.
 
 ## 🚀 Usage Instructions
-
----
 
 The game is controlled entirely via console text commands. Here are the commands you can use to
 interact with the world:
@@ -54,11 +46,21 @@ interact with the world:
 | `clue`                                       | Show a hint for the current situation                            |
 | `exit`                                       | Quit the game                                                    |
 
-## ⬇️ Requirements
-
----
+## ⬇️ Installation
 
 To run this game locally, you will need **Java 24**.
+
+1. Download the latest game `.jar` file from the repository
+2. Open your terminal or command prompt.
+3. Navigate to the folder where you downloaded the file:
+   ```bash
+   cd path/to/your/folder
+   ```
+4. Run the compiled application using Java:
+   ```bash
+   java -jar game.jar
+   ```
+
 
 Libraries used:
 * [Lombook (v1.18.38)](https://projectlombok.org/)

@@ -44,7 +44,7 @@ public class TakeItemCommand extends Command {
                 continue;
             }
 
-            if (item.getName().toLowerCase().equals(itemNameArg)) {
+            if (item.getName().toLowerCase().startsWith(itemNameArg)) {
                 itemToTake = item;
                 break;
             }

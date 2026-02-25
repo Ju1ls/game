@@ -4,12 +4,15 @@ import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.command.Command;
 import cz.jull.command.Response;
+import cz.jull.models.Item;
 import cz.jull.models.locations.Direction;
 import cz.jull.models.locations.Location;
 import cz.jull.models.locations.Side;
 import lombok.Getter;
 
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 
 /**
  * Represents a command that attempts to move the player from the current location to a neighboring one.
@@ -36,9 +39,10 @@ public class EnterPlaceCommand extends Command {
             return new Response("You can't go here, there is a wall.");
         }
 
-        if (nextLocation.isLocked()) {
+        if (nextLocation.isLocked() && !new HashSet<>(player.getInventory()).containsAll(nextLocation.getItems_unlocked())) {
             return new Response("Location is locked.");
         }
+        nextLocation.setLocked(false);
 
         for (Map.Entry<Direction, Side> entry : currentLocation.getSides().entrySet()) {
             if (entry.getValue() == currentSide) {

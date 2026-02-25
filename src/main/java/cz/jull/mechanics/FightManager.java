@@ -4,11 +4,13 @@ import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.command.PostCommandActionType;
 import cz.jull.command.Response;
+import cz.jull.models.Item;
 import cz.jull.models.locations.Side;
 import cz.jull.models.npc.HostileNPC;
 import cz.jull.models.npc.NPC;
 import lombok.Getter;
 
+import java.util.List;
 import java.util.Optional;
 
 /**
@@ -148,6 +150,11 @@ public class FightManager {
         System.out.println("You have defeated " + currentEnemy.getName());
 
         game.getPlayer().getCurrentSide().getNpcs().remove(currentEnemy);
+        List<Item> itemsToGive = currentEnemy.getItems();
+        for (Item item : itemsToGive) {
+            game.getPlayer().addItemToInventory(item);
+            System.out.println("You obtained: " + item.getName());
+        }
 
         currentEnemy = null;
         isPlayerDefending = false;

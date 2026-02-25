@@ -30,7 +30,7 @@ public class UseItemCommand extends Command {
         }
 
         List<Item> inventory = game.getPlayer().getInventory();
-        String itemNameArg = args[0].toLowerCase();
+        String itemNameArg = String.join(" ", args).toLowerCase();
         for (Item item : inventory) {
             String itemName = item.getName().toLowerCase();
             if (!itemName.equals(itemNameArg)) {
@@ -38,11 +38,12 @@ public class UseItemCommand extends Command {
             }
             try {
                 item.useItem(game);
-                break;
+                //TODO delete item when single use item
+                return new Response();
             } catch (Exception e) {
                 throw new RuntimeException(e);
             }
         }
-        return new Response();
+        return new Response("No item found.");
     }
 }

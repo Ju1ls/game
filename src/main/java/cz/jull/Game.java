@@ -7,10 +7,12 @@ import cz.jull.mechanics.FightManager;
 import cz.jull.mechanics.MentalHealthManager;
 import cz.jull.mechanics.ScheduledTaskManager;
 import cz.jull.mechanics.dialog.DialogManager;
+import cz.jull.models.Item;
 import cz.jull.models.locations.Direction;
 import lombok.Getter;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Scanner;
 
 public class Game {
@@ -44,6 +46,8 @@ public class Game {
         player.setCurrentSide(player.getCurrentLocation().getSides().get(Direction.NORTH));
         commandManager.initialization();
         System.out.println(initialDialog());
+
+        player.getInventory().addAll(gameData.getLocations().get(7).getSides().get(Direction.SOUTH).getNpcs().getFirst().getItems());
 
         while (running) {
             System.out.print(">>");

@@ -86,6 +86,7 @@ public class FriendlyNPC extends NPC {
         Dialog reward = new Dialog("Also take this... it will help you in this city", null, (g) -> {
             giveItemToPlayer(g, "item_alcohol");
             giveItemToPlayer(g, "item_drugs");
+            //TODO handle item giving when full inventory
             removeSelf(g);
         });
 

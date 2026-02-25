@@ -1,6 +1,7 @@
 package cz.jull.models.locations;
 
 import com.fasterxml.jackson.annotation.JsonIdentityInfo;
+import com.fasterxml.jackson.annotation.JsonIdentityReference;
 import com.fasterxml.jackson.annotation.ObjectIdGenerators;
 import cz.jull.models.Item;
 import lombok.Getter;
@@ -22,6 +23,8 @@ public class Location {
     private String name;
     private String description;
     private boolean locked;
+
+    @JsonIdentityReference(alwaysAsId = true)
     private List<Item> items_unlocked;
     private EnumMap<Direction, Side> sides;
 

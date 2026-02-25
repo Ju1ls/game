@@ -1,7 +1,6 @@
 package cz.jull.models;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.*;
 import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.models.npc.NPC;
@@ -17,6 +16,10 @@ import java.util.concurrent.TimeUnit;
 @Getter
 @Setter
 @NoArgsConstructor
+@JsonIdentityInfo(
+        generator = ObjectIdGenerators.PropertyGenerator.class,
+        property = "id"
+)
 public class Item {
     private String id;
     private String name;

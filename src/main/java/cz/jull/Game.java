@@ -45,9 +45,6 @@ public class Game {
     public void startGame() throws IOException, InterruptedException {
         loadGame();
         scheduledTaskManager.startAll();
-        player.setCurrentLocation(gameData.getLocations().getFirst());
-        player.setCurrentSide(player.getCurrentLocation().getSides().get(Direction.NORTH));
-        commandManager.initialization();
         System.out.println(INITIAL_DIALOG);
 
         while (running) {
@@ -63,6 +60,8 @@ public class Game {
         gameData = GameData.loadGameDataFromResources();
         scheduledTaskManager.register(new MentalHealthManager(this));
         scheduledTaskManager.register(new DetectorBatteryManager(this));
+        player.setCurrentLocation(gameData.getLocations().getFirst());
+        player.setCurrentSide(player.getCurrentLocation().getSides().get(Direction.NORTH));
     }
 
 }

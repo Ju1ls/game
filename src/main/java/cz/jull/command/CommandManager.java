@@ -3,14 +3,30 @@ package cz.jull.command;
 import cz.jull.Game;
 import cz.jull.command.type.*;
 
-import java.util.HashSet;
 import java.util.Set;
 
 /**
  * Manages the registration and execution of all game commands.
  */
 public class CommandManager {
-    private final Set<Command> commands = new HashSet<>();
+    private final Set<Command> commands = Set.of(
+            new AnswerCommand(),
+            new AttackCommand(),
+            new ClueCommand(),
+            new DefenseCommand(),
+            new EnterPlaceCommand(),
+            new ExitCommand(),
+            new GoCommand(),
+            new HelpCommand(),
+            new HoldBreathCommand(),
+            new InventoryCommand(),
+            new SearchCommand(),
+            new StopDialogCommand(),
+            new TakeItemCommand(),
+            new TalkCommand(),
+            new ThrowItemCommand(),
+            new UseItemCommand()
+    );
 
     /**
      * Parses the user's input string, locates the corresponding command, and executes it.
@@ -55,27 +71,5 @@ public class CommandManager {
         }
         System.out.println("Invalid command. Please try again.");
         return false;
-    }
-
-    /**
-     * Registers all available commands into the internal set.
-     */
-    public void initialization() {
-        commands.add(new AnswerCommand());
-        commands.add(new AttackCommand());
-        commands.add(new ClueCommand());
-        commands.add(new DefenseCommand());
-        commands.add(new EnterPlaceCommand());
-        commands.add(new ExitCommand());
-        commands.add(new GoCommand());
-        commands.add(new HelpCommand());
-        commands.add(new HoldBreathCommand());
-        commands.add(new InventoryCommand());
-        commands.add(new SearchCommand());
-        commands.add(new StopDialogCommand());
-        commands.add(new TakeItemCommand());
-        commands.add(new TalkCommand());
-        commands.add(new ThrowItemCommand());
-        commands.add(new UseItemCommand());
     }
 }

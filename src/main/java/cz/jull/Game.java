@@ -47,8 +47,6 @@ public class Game {
         commandManager.initialization();
         System.out.println(initialDialog());
 
-        player.getInventory().addAll(gameData.getLocations().get(7).getSides().get(Direction.SOUTH).getNpcs().getFirst().getItems());
-
         while (running) {
             System.out.print(">>");
             if (commandManager.runCommand(scanner.nextLine(), this)) {

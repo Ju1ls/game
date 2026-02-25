@@ -26,6 +26,9 @@ public class Item {
     private String description;
     private boolean hidden;
 
+    @JsonProperty("single_use")
+    private boolean singleUse;
+
     @JsonIgnore
     private boolean usable = true;
 

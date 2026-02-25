@@ -156,7 +156,8 @@
                   "id": "item_medkit",
                   "name": "Medkit",
                   "description": "A compact case containing sterile bandages and antiseptics. Using it treats wounds and restores 10% of your physical health.",
-                  "hidden": false
+                  "hidden": false,
+                  "single_use": true
                 }
               ]
             }
@@ -339,7 +340,8 @@
                   "id": "item_oxygen_mask",
                   "name": "Oxygen mask",
                   "description": "Vital protection against toxic environments. When equipped, it filters the air and restores oxygen levels to 100% for a limited duration. Single-use only.",
-                  "hidden": false
+                  "hidden": false,
+                  "single_use": true
                 }
               ]
             }

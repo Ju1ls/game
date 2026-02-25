@@ -38,7 +38,9 @@ public class UseItemCommand extends Command {
             }
             try {
                 item.useItem(game);
-                //TODO delete item when single use item
+                if (item.isSingleUse()) {
+                    game.getPlayer().removeItemFromInventory(item);
+                }
                 return new Response();
             } catch (Exception e) {
                 throw new RuntimeException(e);

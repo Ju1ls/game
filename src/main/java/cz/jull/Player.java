@@ -98,7 +98,6 @@ public class Player {
     /**
      * Sets the player's health. The health value is clamped to ensure it does not drop below 0.
      * @param health The new health value to set.
-     * without throwing an exception by using Math.max(0, health).
      */
     public void setHealth(int health) {
         this.health = Math.max(0, health);

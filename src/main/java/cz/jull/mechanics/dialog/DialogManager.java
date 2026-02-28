@@ -6,6 +6,8 @@ import lombok.Getter;
 
 /**
  * Manages the state and flow of conversations between the {@link cz.jull.Player} and {@link FriendlyNPC}s.
+ *
+ * @author Julie Šefl
  */
 public class DialogManager {
     @Getter

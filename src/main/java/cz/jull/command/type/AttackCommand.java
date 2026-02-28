@@ -7,6 +7,8 @@ import lombok.Getter;
 
 /**
  * Command implementation that triggers a physical attack against an enemy.
+ *
+ * @author Julie Šefl
  */
 public class AttackCommand extends Command {
     @Getter

@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Represents the mechanic responsible for the passive energy drain of the player's detector device.
+ *
+ * @author Julie Šefl
  */
 public class DetectorBatteryManager extends ScheduledTaskManager.Task{
     public DetectorBatteryManager(Game game) {

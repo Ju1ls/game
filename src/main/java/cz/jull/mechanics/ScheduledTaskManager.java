@@ -11,6 +11,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Manages the execution of background tasks and game mechanics that occur over time.
+ *
+ * @author Julie Šefl
  */
 public class ScheduledTaskManager {
     public final ScheduledExecutorService scheduler = Executors.newScheduledThreadPool(2);

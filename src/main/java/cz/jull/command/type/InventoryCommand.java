@@ -11,6 +11,8 @@ import java.util.Scanner;
 
 /**
  * Command responsible for managing and displaying the player's inventory.
+ *
+ * @author Julie Šefl
  */
 public class InventoryCommand extends Command {
     @Getter

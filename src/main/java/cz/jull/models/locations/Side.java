@@ -9,6 +9,9 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Represents a specific side within a larger {@link Location}.
+ */
 @Getter
 @Setter
 @NoArgsConstructor

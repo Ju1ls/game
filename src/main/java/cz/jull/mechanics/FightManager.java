@@ -15,6 +15,8 @@ import java.util.Optional;
 
 /**
  * Manages the combat encounters between the {@link Player} and {@link HostileNPC}s.
+ *
+ * @author Julie Šefl
  */
 public class FightManager {
     @Getter

@@ -3,6 +3,7 @@ package cz.jull.command.type;
 import cz.jull.Game;
 import cz.jull.Player;
 import cz.jull.command.Command;
+import cz.jull.command.PostCommandActionType;
 import cz.jull.command.Response;
 import cz.jull.models.locations.Direction;
 import cz.jull.models.locations.Location;
@@ -14,6 +15,8 @@ import java.util.Map;
 
 /**
  * Represents a command that attempts to move the player from the current location to a neighboring one.
+ *
+ * @author Julie Šefl
  */
 public class EnterPlaceCommand extends Command {
     @Getter
@@ -62,6 +65,10 @@ public class EnterPlaceCommand extends Command {
 
         player.setCurrentLocation(nextLocation);
         player.setCurrentSide(arrivalSide);
+
+        if (nextLocation.getId().equals("loc_bunker")) {
+            return new Response(PostCommandActionType.VICTORY);
+        }
 
         return new Response("You entered: " + nextLocation.getName());
     }

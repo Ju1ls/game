@@ -7,6 +7,8 @@ import lombok.Getter;
 
 /**
  * Command implementation that gives the player a clue about what he should do.
+ *
+ * @author Julie Šefl
  */
 public class ClueCommand extends Command {
     @Getter

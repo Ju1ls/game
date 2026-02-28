@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Represents the mechanic responsible for the passive degradation of the player's mental state.
+ *
+ * @author Julie Šefl
  */
 public class MentalHealthManager extends ScheduledTaskManager.Task{
     public MentalHealthManager(Game game) {

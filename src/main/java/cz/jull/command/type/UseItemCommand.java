@@ -10,6 +10,8 @@ import java.util.List;
 
 /**
  * Represents a command that allows the player to utilize an item from their inventory.
+ *
+ * @author Julie Šefl
  */
 public class UseItemCommand extends Command {
     @Getter

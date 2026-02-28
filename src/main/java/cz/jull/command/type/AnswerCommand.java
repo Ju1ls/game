@@ -7,6 +7,8 @@ import lombok.Getter;
 
 /**
  * Command implementation for answering questions during an active dialogue.
+ *
+ * @author Julie Šefl
  */
 public class AnswerCommand extends Command {
     @Getter

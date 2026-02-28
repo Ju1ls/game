@@ -7,6 +7,8 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Represents the mechanic responsible for managing oxygen consumption and suffocation.
+ *
+ * @author Julie Šefl
  */
 public class OxygenManager extends ScheduledTaskManager.Task {
     public OxygenManager(Game game) {

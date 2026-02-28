@@ -17,6 +17,8 @@ import java.util.List;
 
 /**
  * Represents a command that allows the player to throw an item in a specific direction.
+ *
+ * @author Julie Šefl
  */
 public class ThrowItemCommand extends Command {
     @Getter

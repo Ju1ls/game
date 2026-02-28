@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Represents a command that allows the player to pick up an item from their current location.
+ *
+ * @author Julie Šefl
  */
 public class TakeItemCommand extends Command {
     @Getter

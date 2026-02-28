@@ -8,6 +8,8 @@ import lombok.Getter;
 
 /**
  * Represents a command that toggles the player's breath-holding state.
+ *
+ * @author Julie Šefl
  */
 public class HoldBreathCommand extends Command {
     @Getter

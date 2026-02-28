@@ -4,6 +4,8 @@ import cz.jull.Game;
 
 /**
  * The abstract base class for all executable commands in the game.
+ *
+ * @author Julie Šefl
  */
 public abstract class Command {
     public abstract String getName();

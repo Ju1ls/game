@@ -1,12 +1,16 @@
 package cz.jull.mechanics.dialog;
 
 import cz.jull.Game;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.RequiredArgsConstructor;
 
 import java.util.function.Consumer;
 
+/**
+ * Represents a single step within a conversation tree.
+ *
+ * @author Julie Šefl
+ */
 @RequiredArgsConstructor
 @Getter
 public class Dialog {

@@ -12,6 +12,8 @@ import java.nio.charset.StandardCharsets;
 
 /**
  * Represents the "help" command within the game.
+ *
+ * @author Julie Šefl
  */
 public class HelpCommand extends Command {
     @Getter

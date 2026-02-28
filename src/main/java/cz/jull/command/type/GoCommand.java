@@ -11,6 +11,8 @@ import lombok.Getter;
 
 /**
  * Represents a command that changes the player's orientation within the current location.
+ *
+ * @author Julie Šefl
  */
 public class GoCommand extends Command {
 

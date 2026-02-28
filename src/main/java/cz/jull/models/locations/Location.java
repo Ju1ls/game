@@ -12,6 +12,9 @@ import lombok.Setter;
 import java.util.EnumMap;
 import java.util.List;
 
+/**
+ * Represents a distinct geographical area within the game world.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -28,6 +31,7 @@ public class Location {
     @JsonIdentityReference(alwaysAsId = true)
     @JsonProperty("items_unlocked")
     private List<Item> itemsUnlocked;
+
     private EnumMap<Direction, Side> sides;
 
     @Override

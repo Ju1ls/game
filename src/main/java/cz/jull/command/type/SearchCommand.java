@@ -11,6 +11,8 @@ import java.util.List;
 
 /**
  * Represents a command that allows the player to search their current surroundings.
+ *
+ * @author Julie Šefl
  */
 public class SearchCommand extends Command {
     @Getter

@@ -8,6 +8,8 @@ import lombok.Getter;
 
 /**
  * Command implementation used to terminate the game session.
+ *
+ * @author Julie Šefl
  */
 public class ExitCommand extends Command {
     @Getter

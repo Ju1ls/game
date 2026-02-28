@@ -7,6 +7,7 @@ import lombok.Getter;
 
 /**
  * Command implementation that allows the player to take a defensive stance during combat.
+ * @author Julie Šefl
  */
 public class DefenseCommand extends Command {
     @Getter

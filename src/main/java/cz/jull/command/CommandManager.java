@@ -7,6 +7,8 @@ import java.util.Set;
 
 /**
  * Manages the registration and execution of all game commands.
+ *
+ * @author Julie Šefl
  */
 public class CommandManager {
     private final Set<Command> commands = Set.of(
@@ -61,6 +63,10 @@ public class CommandManager {
                 }
                 case DEAD -> {
                     System.out.println("You died.");
+                    return true;
+                }
+                case VICTORY -> {
+                    System.out.println("You found the hidden Bunker and got to safety!");
                     return true;
                 }
                 case EXIT -> {

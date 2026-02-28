@@ -10,6 +10,11 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ScheduledFuture;
 
+/**
+ * Represents a player entity within the game.
+ *
+ * @author Julie Šefl
+ */
 public class Player {
     @Setter
     @Getter
@@ -78,6 +83,11 @@ public class Player {
         inventory.remove(item);
     }
 
+    /**
+     * Retrieves the player's current oxygen level.
+     * If the player has an oxygen mask, this always simulates a full oxygen tank.
+     * @return The current oxygen level, or 100 if an oxygen mask is equipped.
+     */
     public int getOxygen() {
         if (hasOxygenMask) {
             return 100;
@@ -85,10 +95,21 @@ public class Player {
         return oxygen;
     }
 
-    public void setHealth(int health) throws Exception {
+    /**
+     * Sets the player's health. The health value is clamped to ensure it does not drop below 0.
+     * @param health The new health value to set.
+     * without throwing an exception by using Math.max(0, health).
+     */
+    public void setHealth(int health) {
         this.health = Math.max(0, health);
     }
 
+    /**
+     * Sets the player's oxygen level. If the player has an oxygen mask, the oxygen
+     * level remains unaffected by this setter.
+     * @param oxygen The new oxygen value to set.
+     * @throws Exception If the provided oxygen value is negative.
+     */
     public void setOxygen(int oxygen) throws Exception {
         if (oxygen < 0) {
             throw new Exception("Oxygen can't have negative value.");
@@ -100,6 +121,11 @@ public class Player {
         this.oxygen = oxygen;
     }
 
+    /**
+     * Sets the player's mental health level.
+     * @param mentalHealth The new mental health value to set.
+     * @throws Exception If the provided mental health value is negative.
+     */
     public void setMentalHealth(int mentalHealth) throws Exception {
         if (mentalHealth < 0) {
             throw new Exception("Mental health can't have negative value.");
@@ -107,6 +133,11 @@ public class Player {
         this.mentalHealth = mentalHealth;
     }
 
+    /**
+     * Sets the battery level for the player's detector. The battery level is clamped
+     * to ensure it does not drop below 0.
+     * @param detectorBatteryLevel The new battery level to set.
+     */
     public void setDetectorBatteryLevel(int detectorBatteryLevel) {
         this.detectorBatteryLevel = Math.max(0, detectorBatteryLevel);
     }

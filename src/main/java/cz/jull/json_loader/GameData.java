@@ -9,6 +9,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.List;
 
+/**
+ * A container class representing the static game data loaded from JSON configuration files.
+ *
+ * @author Julie Šefl
+ */
 @Getter
 @Setter
 public class GameData {

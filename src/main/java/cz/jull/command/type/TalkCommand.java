@@ -12,6 +12,8 @@ import java.util.Optional;
 
 /**
  * Command implementation to initiate a conversation with a friendly NPC.
+ *
+ * @author Julie Šefl
  */
 public class TalkCommand extends Command {
     @Getter

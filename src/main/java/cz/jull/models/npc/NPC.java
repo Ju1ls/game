@@ -11,6 +11,9 @@ import lombok.Setter;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The abstract base class representing a Non-Playable Character (NPC) in the game.
+ */
 @Getter
 @Setter
 @NoArgsConstructor
@@ -35,8 +38,16 @@ public abstract class NPC {
         this.items = new ArrayList<>();
     }
 
+    /**
+     * Defines the behavior triggered when the player initiates an interaction with this NPC.
+     * @param game The current {@link Game} instance and state.
+     */
     public abstract void interact(Game game);
 
+    /**
+     * Determines whether the player's EMF detector can pick up a signal from this entity.
+     * @return {@code true} if the NPC triggers the EMF detector, {@code false} otherwise.
+     */
     public abstract boolean isDetectableByEmf();
 
     @Override

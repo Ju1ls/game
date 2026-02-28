@@ -7,6 +7,8 @@ import lombok.Getter;
 
 /**
  * Command implementation that allows the player to end an active conversation.
+ *
+ * @author Julie Šefl
  */
 public class StopDialogCommand extends Command {
     @Getter

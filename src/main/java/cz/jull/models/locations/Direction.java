@@ -1,5 +1,9 @@
 package cz.jull.models.locations;
 
+/**
+ * Represents the four directions used for navigation and defining
+ * the layout (sides) of a {@link Location} in the game world.
+ */
 public enum Direction {
     NORTH,
     SOUTH,

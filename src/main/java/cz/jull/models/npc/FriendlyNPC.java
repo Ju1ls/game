@@ -60,7 +60,12 @@ public class FriendlyNPC extends NPC {
 
         Dialog endSuccess = new Dialog("Great. I needed these. Here, take this mask, I have no use for it anymore.", null, (g) -> {
             takeItemFromPlayer(g, "item_batteries");
-            giveItemToPlayer(g, "item_oxygen_mask");
+
+            if (game.getPlayer().getInventory().size() >= 6) {
+                putItemOnGround(g, "item_oxygen_mask");
+            } else {
+                giveItemToPlayer(g, "item_oxygen_mask");
+            }
             removeSelf(g);
         });
 
@@ -84,9 +89,13 @@ public class FriendlyNPC extends NPC {
      */
     private Dialog createArthurDialog(Game game) {
         Dialog reward = new Dialog("Also take this... it will help you in this city", null, (g) -> {
-            giveItemToPlayer(g, "item_alcohol");
-            giveItemToPlayer(g, "item_drugs");
-            //TODO handle item giving when full inventory
+            if (game.getPlayer().getInventory().size() >= 6) {
+                putItemOnGround(g, "item_alcohol");
+                putItemOnGround(g, "item_drugs");
+            } else {
+                giveItemToPlayer(g, "item_alcohol");
+                giveItemToPlayer(g, "item_drugs");
+            }
             removeSelf(g);
         });
 
@@ -115,12 +124,16 @@ public class FriendlyNPC extends NPC {
 
         Dialog giveKeyOnly = new Dialog("Take this key, it will help you.", null,
                 (g) -> {
-                    giveItemToPlayer(g, "item_second_key");
+                    if (game.getPlayer().getInventory().size() >= 6) {
+                        putItemOnGround(g, "item_second_key");
+                    } else {
+                        giveItemToPlayer(g, "item_second_key");
+                    }
                     removeSelf(g);
                 }
         );
 
-        List<DialogOnEnd.AskQuestion.Answer> options = getAnswers(hasAlcohol, hasDrugs, giveKeyOnly);
+        List<DialogOnEnd.AskQuestion.Answer> options = getAnswers(hasAlcohol, hasDrugs, giveKeyOnly, game);
 
         return new Dialog("My head... I need something to dull the pain.",
                 new DialogOnEnd.AskQuestion("Help her?", options.toArray(DialogOnEnd.AskQuestion.Answer[]::new)));
@@ -133,10 +146,15 @@ public class FriendlyNPC extends NPC {
      * @param giveKeyOnly The fallback dialogue if no items are provided.
      * @return A list of {@link DialogOnEnd.AskQuestion.Answer} available to the player.
      */
-    private List<DialogOnEnd.AskQuestion.Answer> getAnswers(boolean hasAlcohol, boolean hasDrugs, Dialog giveKeyOnly) {
+    private List<DialogOnEnd.AskQuestion.Answer> getAnswers(boolean hasAlcohol, boolean hasDrugs, Dialog giveKeyOnly, Game game) {
         Dialog giveFullReward = new Dialog("Thank you. Take this key and medkit.", null, (g) -> {
-            giveItemToPlayer(g, "item_second_key");
-            giveItemToPlayer(g, "item_medkit");
+            if (game.getPlayer().getInventory().size() >= 6) {
+                putItemOnGround(g, "item_second_key");
+                putItemOnGround(g, "item_medkit");
+            } else {
+                giveItemToPlayer(g, "item_second_key");
+                giveItemToPlayer(g, "item_medkit");
+            }
             removeSelf(g);
         });
 
@@ -182,6 +200,26 @@ public class FriendlyNPC extends NPC {
             this.getItems().remove(item);
             game.getPlayer().addItemToInventory(item);
             System.out.println("You received: " + item.getName());
+        } else {
+            System.out.println("NPC missing item in JSON: " + itemId);
+        }
+    }
+
+    /**
+     * Transfers an item from this NPC to the current side.
+     * @param game The main game instance.
+     * @param itemId The ID of the item to be transferred.
+     */
+    private void putItemOnGround(Game game, String itemId) {
+        Optional<Item> itemOpt = this.getItems().stream()
+                .filter(i -> i.getId().equals(itemId))
+                .findFirst();
+
+        if (itemOpt.isPresent()) {
+            Item item = itemOpt.get();
+            this.getItems().remove(item);
+            game.getPlayer().getCurrentSide().getItems().add(item);
+            System.out.println("Item fell on the ground because you have full inventory: " + item.getName());
         } else {
             System.out.println("NPC missing item in JSON: " + itemId);
         }

@@ -6,8 +6,10 @@ import cz.jull.command.Response;
 import cz.jull.models.Item;
 import lombok.Getter;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.Set;
 
 /**
  * Command responsible for managing and displaying the player's inventory.
@@ -26,15 +28,17 @@ public class InventoryCommand extends Command {
      */
     @Override
     public Response execute(String[] args, Game game) {
-        List<Item> inventory = game.getPlayer().getInventory();
+        Set<Item> inventory = game.getPlayer().getInventory();
 
         if (inventory.isEmpty()) {
             return new Response("Your inventory is empty.");
         }
 
+        List<Item> temp = new ArrayList<>(inventory);
+
         System.out.println("--- Your Inventory ---");
-        for (int i = 0; i < inventory.size(); i++) {
-            System.out.println((i + 1) + ". " + inventory.get(i).getName());
+        for (int i = 0; i < temp.size(); i++) {
+            System.out.println((i + 1) + ". " + temp.get(i).getName());
         }
 
         System.out.print("\nEnter the number of an item to view details (or 0 to cancel): ");
@@ -44,8 +48,8 @@ public class InventoryCommand extends Command {
         if (scanner.hasNextInt()) {
             int choice = scanner.nextInt();
 
-            if (choice > 0 && choice <= inventory.size()) {
-                Item selectedItem = inventory.get(choice - 1);
+            if (choice > 0 && choice <= temp.size()) {
+                Item selectedItem = temp.get(choice - 1);
 
                 System.out.println("\n--- Item Details ---");
                 System.out.println("Name: " + selectedItem.getName());

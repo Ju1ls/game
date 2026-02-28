@@ -7,7 +7,9 @@ import lombok.Getter;
 import lombok.Setter;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.ScheduledFuture;
 
 /**
@@ -50,7 +52,7 @@ public class Player {
     private ScheduledFuture<?> holdingBreathTask;
 
     @Getter
-    private final List<Item> inventory = new ArrayList<>();
+    private final Set<Item> inventory = new HashSet<>();
 
     /**
      * Calculates damage based on the equipped item.

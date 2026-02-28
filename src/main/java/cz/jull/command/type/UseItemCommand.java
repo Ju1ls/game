@@ -7,6 +7,7 @@ import cz.jull.models.Item;
 import lombok.Getter;
 
 import java.util.List;
+import java.util.Set;
 
 /**
  * Represents a command that allows the player to utilize an item from their inventory.
@@ -31,7 +32,7 @@ public class UseItemCommand extends Command {
             return new Response("You must specify which item to use.");
         }
 
-        List<Item> inventory = game.getPlayer().getInventory();
+        Set<Item> inventory = game.getPlayer().getInventory();
         String itemNameArg = String.join(" ", args).toLowerCase();
         for (Item item : inventory) {
             String itemName = item.getName().toLowerCase();

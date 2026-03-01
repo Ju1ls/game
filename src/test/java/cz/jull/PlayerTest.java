@@ -1,11 +1,7 @@
 package cz.jull;
 
 import cz.jull.models.Item;
-import cz.jull.models.locations.Location;
 import org.junit.jupiter.api.Test;
-
-import java.util.ArrayList;
-import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -74,7 +70,7 @@ class PlayerTest extends Player {
     }
 
     @Test
-    void setHealth_WithNegativeValue_ClampsToZero() throws Exception {
+    void setHealth_WithNegativeValue_ClampsToZero() {
         this.setHealth(50);
         assertEquals(50, this.getHealth());
 

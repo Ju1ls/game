@@ -1,0 +1,9 @@
+{
+  "locations": [
+    {
+      "id": "loc_test_room",
+      "name": "Test Room",
+      "description": "A room used for unit testing."
+    }
+  ]
+}

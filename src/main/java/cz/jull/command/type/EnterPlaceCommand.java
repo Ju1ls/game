@@ -70,6 +70,6 @@ public class EnterPlaceCommand extends Command {
             return new Response(PostCommandActionType.VICTORY);
         }
 
-        return new Response("You entered: " + nextLocation.getName());
+        return new Response("You entered: " + nextLocation.getName() + "\n" + nextLocation.getDescription());
     }
 }

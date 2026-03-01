@@ -55,7 +55,7 @@ public class FriendlyNPC extends NPC {
      * @param game The main game instance.
      * @return A {@link Dialog} object representing the start of Miller's interaction.
      */
-    private Dialog createMillerDialog(Game game) {
+    protected Dialog createMillerDialog(Game game) {
         boolean hasBatteries = playerHasItem(game.getPlayer(), "item_batteries");
 
         Dialog endSuccess = new Dialog("Great. I needed these. Here, take this mask, I have no use for it anymore.", null, (g) -> {
@@ -87,7 +87,7 @@ public class FriendlyNPC extends NPC {
      * @param game The main game instance.
      * @return A {@link Dialog} object where Arthur gifts items to the player.
      */
-    private Dialog createArthurDialog(Game game) {
+    protected Dialog createArthurDialog(Game game) {
         Dialog reward = new Dialog("Also take this... it will help you in this city", null, (g) -> {
             if (game.getPlayer().getInventory().size() >= 6) {
                 putItemOnGround(g, "item_alcohol");
@@ -114,7 +114,7 @@ public class FriendlyNPC extends NPC {
      * @param game The main game instance.
      * @return A {@link Dialog} object representing Eleanor's plea for help.
      */
-    private Dialog createEleanorDialog(Game game) {
+    protected Dialog createEleanorDialog(Game game) {
         if (playerHasItem(game.getPlayer(), "item_second_key")) {
             return new Dialog("Thank you for your help.", null);
         }
@@ -146,7 +146,7 @@ public class FriendlyNPC extends NPC {
      * @param giveKeyOnly The fallback dialogue if no items are provided.
      * @return A list of {@link DialogOnEnd.AskQuestion.Answer} available to the player.
      */
-    private List<DialogOnEnd.AskQuestion.Answer> getAnswers(boolean hasAlcohol, boolean hasDrugs, Dialog giveKeyOnly, Game game) {
+    protected List<DialogOnEnd.AskQuestion.Answer> getAnswers(boolean hasAlcohol, boolean hasDrugs, Dialog giveKeyOnly, Game game) {
         Dialog giveFullReward = new Dialog("Thank you. Take this key and medkit.", null, (g) -> {
             if (game.getPlayer().getInventory().size() >= 6) {
                 putItemOnGround(g, "item_second_key");
@@ -181,7 +181,7 @@ public class FriendlyNPC extends NPC {
      * @param id The ID of the item to search for.
      * @return {@code true} if the player has at least one instance of the item; {@code false} otherwise.
      */
-    private boolean playerHasItem(Player player, String id) {
+    protected boolean playerHasItem(Player player, String id) {
         return player.getInventory().stream().anyMatch(i -> i.getId().equals(id));
     }
 
@@ -190,7 +190,7 @@ public class FriendlyNPC extends NPC {
      * @param game The main game instance.
      * @param itemId The ID of the item to be transferred.
      */
-    private void giveItemToPlayer(Game game, String itemId) {
+    protected void giveItemToPlayer(Game game, String itemId) {
         Optional<Item> itemOpt = this.getItems().stream()
                 .filter(i -> i.getId().equals(itemId))
                 .findFirst();
@@ -210,7 +210,7 @@ public class FriendlyNPC extends NPC {
      * @param game The main game instance.
      * @param itemId The ID of the item to be transferred.
      */
-    private void putItemOnGround(Game game, String itemId) {
+    protected void putItemOnGround(Game game, String itemId) {
         Optional<Item> itemOpt = this.getItems().stream()
                 .filter(i -> i.getId().equals(itemId))
                 .findFirst();
@@ -230,7 +230,7 @@ public class FriendlyNPC extends NPC {
      * @param game The main game instance.
      * @param itemId The ID of the item to be removed from the player.
      */
-    private void takeItemFromPlayer(Game game, String itemId) {
+    protected void takeItemFromPlayer(Game game, String itemId) {
         Player player = game.getPlayer();
         Optional<Item> itemToRemove = player.getInventory().stream()
                 .filter(i -> i.getId().equals(itemId))
@@ -245,7 +245,7 @@ public class FriendlyNPC extends NPC {
     /**
      * Removes this NPC from the current location (Side).
      */
-    private void removeSelf(Game game) {
+    protected void removeSelf(Game game) {
         game.getPlayer().getCurrentSide().getNpcs().remove(this);
         System.out.println(this.getName() + " left.");
     }

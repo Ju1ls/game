@@ -16,6 +16,14 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+/**
+ * Unit tests for the {@link EnterPlaceCommand} class.
+ * This class validates the complex logic required to move a player from one
+ * {@link Location} to another, including neighbor detection, locking/unlocking
+ * mechanics, and correct directional arrival.
+ *
+ * @author Julie Šefl
+ */
 class EnterPlaceCommandTest {
 
     private EnterPlaceCommand enterCommand;
@@ -24,6 +32,11 @@ class EnterPlaceCommandTest {
     private Side northSide;
     private Side southSide;
 
+    /**
+     * Sets up a two-room mini-world before each test.
+     * Room A (Street) has a North exit leading to Room B (Tunnel).
+     * Room B has a South entrance, mirroring the exit from Room A.
+     */
     @BeforeEach
     void setUp() {
         enterCommand = new EnterPlaceCommand();
@@ -59,6 +72,10 @@ class EnterPlaceCommandTest {
         dummyGame.getPlayer().setCurrentSide(northSide);
     }
 
+    /**
+     * Verifies that attempting to enter a side with no neighbor returns
+     * the "wall" error message.
+     */
     @Test
     void execute_NoNeighbor_ReturnsWallMessage() {
         northSide.setNeighbor(null);
@@ -68,6 +85,10 @@ class EnterPlaceCommandTest {
         assertEquals("You can't go here, there is a wall.", response.value());
     }
 
+    /**
+     * Verifies that locked locations block entry if the player
+     * does not possess the required items in their inventory.
+     */
     @Test
     void execute_LocationIsLockedWithoutItems_ReturnsLockedMessage() {
         neighborLocation.setLocked(true);
@@ -82,6 +103,10 @@ class EnterPlaceCommandTest {
         assertTrue(neighborLocation.isLocked());
     }
 
+    /**
+     * Verifies that having the correct items automatically unlocks a location
+     * and allows the player to enter successfully.
+     */
     @Test
     void execute_LocationIsLockedWithRequiredItems_EntersSuccessfully() {
         neighborLocation.setLocked(true);
@@ -98,6 +123,11 @@ class EnterPlaceCommandTest {
         assertEquals(neighborLocation, dummyGame.getPlayer().getCurrentLocation());
     }
 
+    /**
+     * Validates that upon entering a new location, the player is correctly
+     * placed on the side opposite to their departure direction.
+     * (e.g., exiting North should land the player at the South side of the next room).
+     */
     @Test
     void execute_SuccessfulMove_CalculatesArrivalSideCorrectly() {
         neighborLocation.setDescription("A dark underground passage.");
@@ -114,6 +144,10 @@ class EnterPlaceCommandTest {
                 "Player should arrive at the side opposite to the one they entered from");
     }
 
+    /**
+     * Tests the special case for the Bunker.
+     * Verifies that entering the bunker location triggers the victory state.
+     */
     @Test
     void execute_EnteringBunker_ReturnsVictory() {
         neighborLocation.setId("loc_bunker");
